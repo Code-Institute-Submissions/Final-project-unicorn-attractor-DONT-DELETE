@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.urls import path, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from posts.views import index
 from users import urls as users_urls
 from posts import urls as posts_urls
@@ -25,3 +27,7 @@ urlpatterns = [
     path('users/', include(users_urls)),
     path('posts/', include(posts_urls)),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

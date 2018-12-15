@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Profile Page{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <div class="media">
+        <img class="rounded-circle account-img img-thumbnail mr-3" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+        <button type="button" class="btn btn-primary btn-sm">
+            Edit Profile
+        </button>
+        <a href="{% url 'create_post' %}">
+            <button type="button" class="btn btn-primary btn-sm">
+                Create a Post
+            </button>
+        </div>
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

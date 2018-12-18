@@ -64,7 +64,7 @@
    
 
     {% comment %} <---------FLASH MESSAGES ----------> {% endcomment %}
-    <div class="container mt-4">
+    <div class="container">
         <div class="row messages-display">
             <div class="col-md-8">
                 {% if messages %}
@@ -81,12 +81,9 @@
 
     {% comment %} <-------- MAIN CONTENT -------------> {% endcomment %}
 
-    <div class="container mt-2">
+    {% block content %}
 
-        {% block content %}
-
-        {% endblock %}
-    </div>
+    {% endblock %}
 
 
 

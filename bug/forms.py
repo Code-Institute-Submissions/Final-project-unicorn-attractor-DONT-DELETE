@@ -4,10 +4,9 @@ from .models import Bug
 class New_posts(forms.ModelForm):
     class Meta:
         model = Bug
-        fields = ('subject', 'title', 'description',
-                  'price')
+        fields = ('title', 'description')
 
-class Bug(forms.ModelForm):
+class Bug_comment(forms.ModelForm):
     class Meta:
         model = Bug
         fields = ('comment',)

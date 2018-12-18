@@ -3,11 +3,16 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-<p> You were successfully logged out!</p>
-<div>
-    <button type="button" class="btn btn-outline-primary"><a href="{% url 'login' %}">Login</a></button>
-
+<div class="main-display">
+    <div class="container login-register">
+        <p> You were successfully logged out!</p>
+        <div>
+        <a href="{% url 'login' %}">
+            <button type="button" class="btn btn-primary">
+                Login
+            </button>
+        </a>
+    </div>
 </div>
 
 

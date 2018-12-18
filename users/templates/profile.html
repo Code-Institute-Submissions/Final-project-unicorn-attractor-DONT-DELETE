@@ -5,41 +5,38 @@
 {% block title %}Profile Page{% endblock %}
 
 {% block content %}
-<div class="content-section">
-    <div class="media">
-        <img class="rounded-circle account-img img-thumbnail mr-3" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
-        <button type="button" class="btn btn-primary btn-sm">
-            Edit Profile
-        </button>
-        <a href="{% url 'create_bug' %}">
+<div class="container">
+    <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img img-thumbnail mr-3" src="{{ user.profile.image.url }}">
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
             <button type="button" class="btn btn-primary btn-sm">
-                Post a Bug
+                Edit Profile
             </button>
-        </a>
-        <a href="{% url 'create_feature' %}">
-            <button type="button" class="btn btn-primary btn-sm">
-                Create a Feature
-            </button>
-        </a>
+            <a href="{% url 'create_bug' %}">
+                <button type="button" class="btn btn-primary btn-sm">
+                    Post a Bug
+                </button>
+            </a>
+            <a href="{% url 'create_feature' %}">
+                <button type="button" class="btn btn-primary btn-sm">
+                    Create a Feature
+                </button>
+            </a>
+            </div>
         </div>
     </div>
 </div>
-
-         
-
-
-
-<form method="POST" class="mt-3" enctype="multipart/form-data">
-    {% csrf_token %} 
-
-    {{ Profile_Form|crispy }}
-    {{ User_Form|crispy }}
-
-    <button type="submit" class="btn btn-primary">Update</button>
-    
-</form>
+<div class="container">
+    <form method="POST" class="mt-3" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {{ Profile_Form|crispy }}
+        {{ User_Form|crispy }}
+        <button type="submit" class="btn btn-primary">Update</button>
+        
+    </form>
+</div>
 
 {% endblock %}

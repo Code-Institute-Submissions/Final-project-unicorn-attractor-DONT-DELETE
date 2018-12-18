@@ -1,4 +1,27 @@
+body{
+    padding: 0;
+    margin: 0;
+}
 .account-img {
     width: 150px !important;
     height: 150px !important;
+}
+
+.main-display{
+    background-image: url("/photos/main.jpg");
+    background-position: center;
+    background-repeat: none;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+.main-content{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+.login-register{
+    width: 50%;
+    float: left;
+    margin: 100px;
 }

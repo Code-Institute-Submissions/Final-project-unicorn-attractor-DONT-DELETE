@@ -12,11 +12,9 @@ class Bug(models.Model):
     description = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     views = models.IntegerField(default=0)
-    price = models.DecimalField(max_digits=6, decimal_places=2, default=2.99)
-    subject = models.CharField(
-        max_length=10, choices=app_choices, default="bug")
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     comment = models.TextField(default="")
+    author = models.ForeignKey(User)
 
     def __str__(self):
         return self.title

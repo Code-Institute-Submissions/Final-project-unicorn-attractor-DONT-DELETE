@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib import auth, messages
-from .forms import New_posts, Bug
 from django.contrib.auth.decorators import login_required
+from .forms import New_posts, Bug_comment
+from .models import Bug
 
 # Create your views here.
 @login_required
@@ -11,9 +12,10 @@ def create_bug(request):
         form = New_posts(request.POST)
 
         if form.is_valid():
-            author_id = request.user
+            bug = form.save(commit=False)
+            bug.author = request.user
+            bug.save()
             messages.success(request, "Your post has been created!")
-            form.save()
             return redirect(reverse("index"))
     else:
         form = New_posts()
@@ -22,9 +24,8 @@ def create_bug(request):
 
 
 def preview_bug(request, id):
-    post = get_object_or_404(Posts, pk=id)
-    comment = Bug()
-
+    Bug = get_object_or_404(Bug, pk=id)
+    comment = Bug
     post.views += 1
 
     context = {

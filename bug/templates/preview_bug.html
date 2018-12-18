@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Post Preview
+{% endblock %}
+
+{% block content %}
+
+<div class="card mt-1">
+                    <div class="card-header">
+                        <span class="badge badge-primary badge-pill float-right">Views: {{ post.views }}
+                        </span>
+                        <i class="fas fa-bug"></i>
+                        {{ post.subject|capfirst }} : {{ post.title }}
+
+                        <p class="mt-2">Posted : {{ post.created_date|date:"F d, Y" }}</p>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.description }}</p>
+                    </div>
+                </div>
+<div>
+
+<form method="POST">
+    {% csrf_token %} 
+
+   {{ comment|crispy }}
+   
+    <button type="submit" class="btn btn-primary">Add comment</button>
+</form>
+{% endblock %}
+

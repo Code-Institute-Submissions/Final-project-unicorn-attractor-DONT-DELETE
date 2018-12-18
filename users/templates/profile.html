@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
 {% block title %}Profile Page{% endblock %}
 
 {% block content %}
@@ -11,14 +14,32 @@
         <button type="button" class="btn btn-primary btn-sm">
             Edit Profile
         </button>
-        <a href="{% url 'create_post' %}">
+        <a href="{% url 'create_bug' %}">
             <button type="button" class="btn btn-primary btn-sm">
-                Create a Post
+                Post a Bug
             </button>
-        </div>
         </a>
+        <a href="{% url 'create_feature' %}">
+            <button type="button" class="btn btn-primary btn-sm">
+                Create a Feature
+            </button>
+        </a>
+        </div>
     </div>
 </div>
 
+         
+
+
+
+<form method="POST" class="mt-3" enctype="multipart/form-data">
+    {% csrf_token %} 
+
+    {{ Profile_Form|crispy }}
+    {{ User_Form|crispy }}
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    
+</form>
 
 {% endblock %}

@@ -17,14 +17,15 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from home.views import index
+from home.views import index, home
 from users import urls as users_urls
 from bug import urls as bug_urls
 from feature import urls as feature_urls
+from home import urls as home_urls
 
 urlpatterns = [
     url('admin/', admin.site.urls),
-    url(r'^$', index, name="index"),
+    url(r'^', include(home_urls)),
     url(r'users/', include(users_urls)),
     url(r'bug/', include(bug_urls)),
     url(r'feature/', include(feature_urls)),

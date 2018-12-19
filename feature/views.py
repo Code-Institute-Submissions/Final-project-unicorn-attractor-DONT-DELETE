@@ -11,7 +11,8 @@ def create_feature(request):
         form = New_posts(request.POST)
 
         if form.is_valid():
-            author_id = request.user
+            feature = form.save(commit=False)
+            feature.author = request.user
             messages.success(request, "Your post has been created!")
             form.save()
             return redirect(reverse("index"))

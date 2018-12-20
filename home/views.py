@@ -12,18 +12,13 @@ def index(request):
 # <--------------- HOMEPAGE ONCE LOGGED IN --------->
 @login_required
 def home(request):
-
+    
     bugs = Bug.objects.all()
     features = Feature.objects.all()
-    
-    ProfileBug = Bug.objects.filter(author=request.user)
-    ProfileFeature = Feature.objects.filter(author=request.user)
 
     context = {
         "bugs": bugs,
         "features": features,
-        "ProfileBug": ProfileBug,
-        "ProfileFeature": ProfileFeature,
     }
     return render(request, "home.html", context)
 

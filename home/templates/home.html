@@ -3,16 +3,14 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
 <div class="container mt-3">
-   <h4>Dashboard : {{ user.username|capfirst }}</h4>
+   <h4>Welcome {{ user.username|capfirst }}</h4>
+   <p class="lead text-muted"> Thankyou for becoming a member of our community, find your way round by the tabs below to view bugs and features. Click on the profile logo at the top to view your own bugs or features and if you wish to create any.</p>
     <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="Bug-tab" data-toggle="tab" href="#Bug" role="tab" aria-controls="Bug" aria-selected="true">Bugs</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="Feature-tab" data-toggle="tab" href="#Feature" role="tab" aria-controls="Feature" aria-selected="false">Features</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="Current-tab" data-toggle="tab" href="#Current" role="tab" aria-controls="Current" aria-selected="false">Projects</a>
         </li>
     </ul>
 
@@ -22,25 +20,39 @@
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="Bug" role="tabpanel"    aria-labelledby="Bug-tab">
             <p class="lead text-muted tab-display">
-                Bugs list of all the bugs that have been currently posted online by our community that they habe found while working for the company and is here help others in finding a solution to a similar problem. Everyones comments are listed below each post you view.
+                All the bugs below have been posted by our community that they are currently having issues with and would like help from others in finding a solution. You can choose to upvote this issue or post a comment that will help resolve the bug.
             </p>
             <div class="row mb-2">
                 {% for bug in bugs %}
                     <div class="col-md-6">
                         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
-                            <strong class="d-inline-block mb-2 text-primary">{{ bug.author }}</strong>
-                            <h3 class="mb-0">
-                                <a class="text-dark" href="#">{{ bug.title }}</a>
-                            </h3>
-                            <div class="mb-1 text-muted">{{ bug.created_date| date:"D j Y " }}</div>
-                            <p class="card-text mb-auto">{{ bug.description|truncatechars:50 }}</p>
-                            <a href="#">
-                                <button type="button" class="btn btn-info btn-sm mt-3">
-                                    View post
-                                </button>
-                            </a>
-                        </div>
+                                <strong class="d-inline-block mb-2 text-primary">
+                                    {{ bug.author }}
+                                </strong>
+                                <span class="badge badge-primary views-btn">
+                                    Views
+                                    <span class="badge badge-light">
+                                        {{ bug.views }}
+                                    </span>
+                                </span>
+                                <h3 class="mb-0">
+                                    <a class="text-dark" href="#">
+                                        {{ bug.title }}
+                                    </a>
+                                </h3>
+                                <div class="mb-1 text-muted">
+                                    {{ bug.created_date| date:"D j Y " }}
+                                </div>
+                                <p class="card-text mb-auto">
+                                    {{ bug.description|truncatechars:50 }}
+                                </p>
+                                <a href="{% url 'preview_bug' bug.id %}">
+                                    <button type="button" class="btn btn-info btn-sm mt-3">
+                                        View Bug
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -51,7 +63,7 @@
 
         <div class="tab-pane fade" id="Feature" role="tabpanel" aria-labelledby="Feature-tab">
             <p class="lead text-muted tab-display">
-                Features is a list of features that have been posted by the community that they wish to have while working at the company. Each feature will have comments posted on below. If you wish to push the feature to the top of priority over others then you simply add the feature to your cart and purchase through the website.
+                All our amazing features are listed below. If you wish to purchase an amazing feature simply add to your cart and purchase through the website. Add any comment you have about the feature for others to see.
             </p>
             <div class="row mb-2">
                 {% for feature in features %}
@@ -64,7 +76,7 @@
                             </h3>
                             <div class="mb-1 text-muted">{{ feature.created_date| date:"D j Y " }}</div>
                             <p class="card-text mb-auto">{{ feature.description|truncatechars:50 }}</p>
-                            <a href="#">
+                            <a href="{% url 'preview_feature' feature.id %}">
                                 <button type="button" class="btn btn-info btn-sm mt-3">
                                     View post
                                 </button>
@@ -75,63 +87,6 @@
                 {% endfor %}
             </div>
         </div>
-
-        {% comment %}  <------------ PROJECTS ----------> {% endcomment %}
-
-        <div class="tab-pane fade" id="Current" role="tabpanel" aria-labelledby="Current-tab">
-            <p class="lead text-muted tab-display">
-                Projects section currently displays any bugs or features that you have posted.
-            </p>
-            {% if ProfileFeature %}
-                <h5>Features</h5>
-                <div class="row mb-2">
-                    {% for feature in ProfileFeature %}
-                            <div class="col-md-6">
-                                <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                                    <div class="card-body d-flex flex-column align-items-start">
-                                    <strong class="d-inline-block mb-2 text-primary">{{ feature.author }}</strong>
-                                    <h3 class="mb-0">
-                                        <a class="text-dark" href="#">{{ feature.title }}</a>
-                                    </h3>
-                                    <div class="mb-1 text-muted">{{ feature.created_date| date:"D j Y " }}</div>
-                                    <p class="card-text mb-auto">{{ feature.description|truncatechars:50 }}</p>
-                                    <a href="#">
-                                        <button type="button" class="btn btn-info btn-sm mt-3">
-                                            View post
-                                        </button>
-                                    </a>
-                                </div>
-                                </div>
-                            </div>
-                        {% endfor %} 
-                </div>
-            {% endif %}
-            {% if ProfileBug %}
-                <h5>Bugs</h5>
-                <div class="row mb-2">
-                    {% for bug in ProfileBug %}
-                        <div class="col-md-6">
-                            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                                <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-primary">{{ bug.author }}</strong>
-                                <h3 class="mb-0">
-                                    <a class="text-dark" href="#">{{ bug.title }}</a>
-                                </h3>
-                                <div class="mb-1 text-muted">{{ bug.created_date| date:"D j Y " }}</div>
-                                <p class="card-text mb-auto">{{ bug.description|truncatechars:50 }}</p>
-                                <a href="#">
-                                    <button type="button" class="btn btn-info btn-sm mt-3">
-                                        View post
-                                    </button>
-                                </a>
-                            </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-        
     </div>
 </div>
 

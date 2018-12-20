@@ -20,16 +20,15 @@ def create_bug(request):
     else:
         form = New_posts()
 
-    return render(request, "new_posts.html", {'form': form})
+    return render(request, "new_bug.html", {'form': form})
 
 
 def preview_bug(request, id):
-    Bug = get_object_or_404(Bug, pk=id)
-    comment = Bug
-    post.views += 1
+
+    bug = get_object_or_404(Bug, pk=id)
+    bug.views += 1
 
     context = {
-        "post": post,
-        "comment": comment
+        "post": bug,
     }
     return render(request, "preview_bug.html", context)

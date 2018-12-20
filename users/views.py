@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, UpdateUserForm, UpdateUserProfile
+from bug.models import Bug
+from feature.models import Feature
 
 # <---------- REGISTER FORM  ---------->
 
@@ -37,12 +39,18 @@ def profile(request):
             messages.success(request, "Your account has been updated!")
             return redirect("profile")
     else:
+
         User_Profile = UpdateUserProfile(instance=request.user.profile)
         User_Form = UpdateUserForm(instance=request.user)
 
+        ProfileBug = Bug.objects.filter(author=request.user)
+        ProfileFeature = Feature.objects.filter(author=request.user)
+
     context = {
         "Profile_Form": User_Profile,
-        "User_Form": User_Form
+        "User_Form": User_Form,
+        "ProfileBug": ProfileBug,
+        "ProfileFeature": ProfileFeature,
     }
 
     return render(request, "profile.html", context)

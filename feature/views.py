@@ -19,4 +19,14 @@ def create_feature(request):
     else:
         form = New_posts()
 
-    return render(request, "new_posts.html", {'form': form})
+    return render(request, "new_feature.html", {'form': form})
+
+def preview_feature(request, id):
+    
+    feature = get_object_or_404(Feature, pk=id)
+    feature.views += 1
+
+    context = {
+        "post": feature,
+    }
+    return render(request, "preview_feature.html", context)

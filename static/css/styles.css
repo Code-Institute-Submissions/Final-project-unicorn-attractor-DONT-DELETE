@@ -29,3 +29,11 @@ body{
     width: 75% !important;
     margin: 20px auto;
 }
+.profile-form {
+    display: none;
+}
+.views-btn{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}

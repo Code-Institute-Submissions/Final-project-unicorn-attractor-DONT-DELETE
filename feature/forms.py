@@ -1,5 +1,5 @@
 from django import forms
-from .models import Feature
+from .models import Feature, FeatureComment
 
 class New_posts(forms.ModelForm):
     class Meta:
@@ -7,9 +7,9 @@ class New_posts(forms.ModelForm):
         fields = ('subject', 'title', 'description',
                   'price')
 
-class Feature(forms.ModelForm):
+class Comment_form(forms.ModelForm):
     class Meta:
-        model = Feature
+        model = FeatureComment
         fields = ('comment',)
 
 

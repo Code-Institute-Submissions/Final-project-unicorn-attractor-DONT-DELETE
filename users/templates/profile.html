@@ -7,26 +7,29 @@
 {% block content %}
 
 <div class="container">
-    <div class="content-section">
+    <div class="content-section mt-3">
         <div class="media">
+
             <img class="rounded-circle account-img img-thumbnail mr-3" src="{{ user.profile.image.url }}">
+
             <div class="media-body">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
-            <button type="button" id="profile-edit" class="btn btn-primary btn-sm"
-            data-toggle="collapse" data-target="#collapseProfile" aria-expanded="false" aria-controls="collapseProfile">
-                Edit Profile
-            </button>
-            <a href="{% url 'create_bug' %}">
-                <button type="button" class="btn btn-primary btn-sm">
+                <h2 class="account-heading">
+                    {{ user.username|capfirst }}
+                </h2>
+                <p class="text-secondary">
+                    {{ user.email }}
+                </p>
+                <a class="btn btn-primary btn-sm" href="{% url 'create_bug' %}" role="button">
                     Post a Bug
-                </button>
-            </a>
-            <a href="{% url 'create_feature' %}">
-                <button type="button" class="btn btn-primary btn-sm">
+                </a>
+                <a class="btn btn-primary btn-sm" href="{% url 'create_feature' %}">
                     Create a Feature
+                </a>
+                <button type="button" id="profile-edit" class="btn btn-warning btn-sm"
+                data-toggle="collapse" data-target="#collapseProfile" aria-expanded="false" aria-controls="collapseProfile">
+                    Edit Profile
                 </button>
-            </a>
+                </a>
             </div>
         </div>
     </div>
@@ -39,7 +42,7 @@
         {{ User_profile|crispy }}
         {{ User_image|crispy }}
 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary btn-sm">Update</button>
     <hr>
     </form>
 
@@ -48,30 +51,6 @@
         <p class="lead text-muted mt-3">
            Below is a list of all the bugs and features you have posted to the community. Here you can edit your posts and view there progress. 
         </p>
-        {% if ProfileFeature %}
-            <h5>Features</h5>
-            <div class="row mb-2">
-                {% for feature in ProfileFeature %}
-                        <div class="col-md-6">
-                            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                                <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-primary">{{ feature.author }}</strong>
-                                <h3 class="mb-0">
-                                    <a class="text-dark" href="#">{{ feature.title }}</a>
-                                </h3>
-                                <div class="mb-1 text-muted">{{ feature.created_date| date:"D j Y " }}</div>
-                                <p class="card-text mb-auto">{{ feature.description|truncatechars:50 }}</p>
-                                <a href="#">
-                                    <button type="button" class="btn btn-info btn-sm mt-3">
-                                        View post
-                                    </button>
-                                </a>
-                            </div>
-                            </div>
-                        </div>
-                    {% endfor %} 
-            </div>
-        {% endif %}
         {% if ProfileBug %}
             <h5>Bugs</h5>
             <div class="row mb-2">
@@ -79,22 +58,73 @@
                     <div class="col-md-6">
                         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
-                            <strong class="d-inline-block mb-2 text-primary">{{ bug.author }}</strong>
-                            <h3 class="mb-0">
-                                <a class="text-dark" href="#">{{ bug.title }}</a>
-                            </h3>
-                            <div class="mb-1 text-muted">{{ bug.created_date| date:"D j Y " }}</div>
-                            <p class="card-text mb-auto">{{ bug.description|truncatechars:50 }}</p>
-                            <a href="#">
-                                <button type="button" class="btn btn-info btn-sm mt-3">
+                                <strong class="d-inline-block mb-2 text-primary">   
+                                    {{ bug.author }}
+                                </strong>
+                                <a href="{% url 'delete_bug' bug.id %}">
+                                    <button type="button" class="close right-corner" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            &times;
+                                        </span>
+                                    </button>
+                                </a>
+                                <h3 class="mb-0">
+                                    <a class="text-dark">
+                                        {{ bug.title }}
+                                    </a>
+                                </h3>
+                                <div class="mb-1 text-muted">
+                                    {{ bug.created_date| date:"D j Y " }}
+                                </div>
+                                <p class="card-text mb-auto">
+                                    {{ bug.description|truncatechars:50 }}
+                                </p>
+                                <a href="{% url 'preview_bug' bug.id %}" class="btn btn-info btn-sm mt-3">
                                     View post
-                                </button>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
+        {% endif %}
+
+        {% if ProfileFeature %}
+            <h5>Features</h5>
+                <div class="row mb-2">
+                    {% for feature in ProfileFeature %}
+                        <div class="col-md-6">
+                            <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <strong class="d-inline-block mb-2 text-primary">
+                                        {{ feature.author }}
+                                    </strong>
+                                    <a href="{% url 'delete_feature' feature.id %}">
+                                        <button type="button" class="close right-corner" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                &times;
+                                            </span>
+                                        </button>
+                                    </a>
+                                    <h3 class="mb-0">
+                                        <a class="text-dark">
+                                            {{ feature.title }}
+                                        </a>
+                                    </h3>
+                                    <div class="mb-1 text-muted">
+                                        {{ feature.created_date| date:"D j Y " }}
+                                    </div>
+                                    <p class="card-text mb-auto">
+                                        {{ feature.description|truncatechars:50 }}
+                                    </p>
+                                    <a href="{% url 'preview_feature' feature.id %}" class="btn btn-info btn-sm mt-3">
+                                        View post
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %} 
+                </div>
         {% endif %}
     </div>
 </div>

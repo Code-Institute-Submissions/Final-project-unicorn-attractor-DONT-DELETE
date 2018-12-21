@@ -43,9 +43,6 @@ def profile(request):
         User_profile = UpdateProfile(instance=request.user)
         User_image = UpdateImage(instance=request.user.profile)
 
-        print(User_image)    
-        print(User_profile) 
-
         ProfileBug = Bug.objects.filter(author=request.user)
         ProfileFeature = Feature.objects.filter(author=request.user)
 

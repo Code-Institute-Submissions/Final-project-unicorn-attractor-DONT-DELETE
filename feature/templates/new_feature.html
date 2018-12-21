@@ -5,15 +5,16 @@
 {% block title %}Create a Feature{% endblock %}
 
 {% block content %}
+<div class="container">
+    <h4>Create a Feature</h4>
 
-<h4>Create a Feature</h4>
+    <form method="POST">
+        {% csrf_token %} 
 
-<form method="POST">
-    {% csrf_token %} 
-
-   {{ form|crispy }}
-   
-    <button type="submit" class="btn btn-primary">Add your Feature</button>
-</form>
+    {{ form|crispy }}
+    
+        <button type="submit" class="btn btn-primary">Add your Feature</button>
+    </form>
+</div>
 
 {% endblock %}

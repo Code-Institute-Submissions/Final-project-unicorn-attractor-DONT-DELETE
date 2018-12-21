@@ -32,8 +32,19 @@ body{
 .profile-form {
     display: none;
 }
-.views-btn{
+.views-display {
     position: absolute;
     top: 25px;
     right: 20px;
+}
+.right-corner {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+.delete_title {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #000000;
+    margin: 0 2px;
 }

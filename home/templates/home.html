@@ -24,6 +24,7 @@
             <p class="lead text-muted tab-display">
                 All the bugs below have been posted by our community that they are currently having issues with and would like help from others in finding a solution. You can choose to upvote this issue or post a comment that will help resolve the bug.
             </p>
+            <hr>
             <div class="row mb-2">
                 {% for bug in bugs %}
                     <div class="col-md-6">
@@ -32,7 +33,7 @@
                                 <strong class="d-inline-block mb-2 text-primary">
                                     {{ bug.author }}
                                 </strong>
-                                <span class="badge badge-primary views-btn">
+                                <span class="badge badge-primary views-display">
                                     Views
                                     <span class="badge badge-light">
                                         {{ bug.views }}
@@ -72,18 +73,32 @@
                     <div class="col-md-6">
                         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
                             <div class="card-body d-flex flex-column align-items-start">
-                            <strong class="d-inline-block mb-2 text-primary">{{ feature.author }}</strong>
-                            <h3 class="mb-0">
-                                <a class="text-dark" href="#">{{ feature.title }}</a>
-                            </h3>
-                            <div class="mb-1 text-muted">{{ feature.created_date| date:"D j Y " }}</div>
-                            <p class="card-text mb-auto">{{ feature.description|truncatechars:50 }}</p>
-                            <a href="{% url 'preview_feature' feature.id %}">
-                                <button type="button" class="btn btn-info btn-sm mt-3">
-                                    View post
-                                </button>
-                            </a>
-                        </div>
+                                <strong class="d-inline-block mb-2 text-primary">
+                                    {{ feature.author }}
+                                </strong>
+                                <span class="badge badge-primary views-display">
+                                        Views
+                                    <span class="badge badge-light">
+                                        {{ feature.views }}
+                                    </span>
+                                </span>
+                                <h3 class="mb-0">
+                                    <a class="text-dark">
+                                        {{ feature.title }}
+                                    </a>
+                                </h3>
+                                <div class="mb-1 text-muted">
+                                    {{ feature.created_date| date:"D j Y " }}
+                                </div>
+                                <p class="card-text mb-auto">
+                                    {{ feature.description|truncatechars:50 }}
+                                </p>
+                                <a href="{% url 'preview_feature' feature.id %}">
+                                    <button type="button" class="btn btn-info btn-sm mt-3">
+                                        View post
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}

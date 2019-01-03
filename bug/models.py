@@ -5,9 +5,10 @@ from django.contrib.auth.models import User
 
 class Bug(models.Model):
     app_choices = [
-        ("bug", "Bug"),
-        ("feature", "Feature")
-    ]
+         ("Todo", "To do"),
+         ("Doing", "Doing"),
+         ("Done", "Done")
+     ]
     title = models.CharField(max_length=100)
     description = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
@@ -15,10 +16,25 @@ class Bug(models.Model):
     upvotes = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    assigned = models.CharField(max_length=100, default="")
+    status = models.CharField(max_length=10, choices=app_choices, default="Todo")
 
     def __str__(self):
         return self.title
-    
+
+class BugStatus(models.Model):
+    app_choices = [
+        ("Todo", "To do"),
+        ("Doing", "Doing"),
+        ("Done", "Done")
+    ]
+    bug = models.ForeignKey(Bug)
+    status = models.CharField(
+          max_length=10, choices=app_choices, default="Todo")
+
+    def __str__(self):
+        return self.comment
+
 class BugComment(models.Model):
     comment = models.TextField()
     author = models.ForeignKey(User)

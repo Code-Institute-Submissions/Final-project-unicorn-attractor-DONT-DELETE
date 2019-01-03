@@ -51,176 +51,89 @@
 
 
      {% comment %}  <------------ PROFILES DISPLAY ----------> {% endcomment %}
-        <p class="lead text-muted mt-3">
-           Below is a list of all the bugs and features you have posted to the community or are currently working on. Here you can edit your posts and view there progress. 
-        </p>
-        <hr>
+    <p class="lead text-muted mt-3">
+        Below is a list of all the bugs and features you have posted to the community or are currently working on. Here you can edit your posts and view there progress. 
+    </p>
+    <hr>
 
-        <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="work-tab" data-toggle="tab" href="#work" role="tab" aria-controls="work" aria-selected="true">Currently working on</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="own-tab" data-toggle="tab" href="#own" role="tab" aria-controls="own" aria-selected="false">Your own Inventory</a>
-            </li>
-        </ul>   
+    <h2 class="mb-2">
+        <u> Your Posts</u>
+    </h2>
 
-
-        {% comment %} <--------- FEATURES AND BUGS THAT YOU ARE CURRENTLY WORKING ON ---------> {% endcomment %}
-
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="work" role="tabpanel"    aria-labelledby="work-tab">
-                <div class="todo-display">
-                    <button type="button" class="btn btn-sm btn-danger">Todo</button>
-                    <button type="button" class="btn btn-sm btn-warning">Doing</button>
-                    <button type="button" class="btn btn-sm btn-success">Done</button>
+    {% comment %} <--------- YOUR OWN FEATURES AND BUGS  ---------> {% endcomment %}
+    <h5>Bugs</h5>
+    {% if ProfileBug %}
+        <div class="row mb-2">
+            {% for bug in ProfileBug %}
+                <div class="col-md-4">
+                    <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <h5 class="post-title">
+                                {{ bug.title }}
+                            </h5>
+                            <a href="{% url 'delete_bug' bug.id %}">
+                                <button type="button" class="close right-corner" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+                                </button>
+                            </a>
+                            <p class="card-text mb-auto post-text">
+                                {{ bug.description|truncatechars:65 }}
+                            </p>
+                            <div class="mb-1 text-muted post-date">
+                                {{ bug.created_date| date:"D j Y " }}
+                            </div>
+                            <a href="{% url 'preview_bug' bug.id %}">
+                                <button type="button" class="badge badge-info">
+                                    View Bug
+                                </button>
+                            </a>
+                            <a href="{% url 'edit_bug' bug.id %}">
+                                <button type="button" class="badge badge-primary">
+                                    Edit Bug
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <h5>Bugs</h5>
-                {% if ProfileBug %}
-                    <div class="row mb-2">
-                        {% for bug in ProfileBug %}
-                            <div class="col-md-4">
-                                <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
-                                    <div class="card-body d-flex flex-column align-items-start">
-                                        <h5 class="post-title">
-                                            {{ bug.title }}
-                                        </h5>
-                                        <a href="{% url 'delete_bug' bug.id %}">
-                                                <button type="button" class="close right-corner" aria-label="Close">
-                                                    <span aria-hidden="true">
-                                                        &times;
-                                                    </span>
-                                                </button>
-                                            </a>
-                                        <p class="card-text mb-auto post-text">
-                                            {{ bug.description|truncatechars:65 }}
-                                        </p>
-                                        <div class="mb-1 text-muted post-date">
-                                            {{ bug.created_date| date:"D j Y " }}
-                                        </div>
-                                        <a href="{% url 'preview_bug' bug.id %}">
-                                            <button type="button" class="badge badge-info">
-                                                View Bug
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                {% if ProfileFeature %}
-                    <h5>Features</h5>
-                        <div class="row mb-2">
-                            {% for feature in ProfileFeature %}
-                                <div class="col-md-4">
-                                    <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
-                                        <div class="card-body d-flex flex-column align-items-start">
-                                            <a href="{% url 'delete_feature' feature.id %}">
-                                                <button type="button" class="close right-corner" aria-label="Close">
-                                                    <span aria-hidden="true">
-                                                        &times;
-                                                    </span>
-                                                </button>
-                                            </a>
-                                            <h5 class="post-title">
-                                                {{ feature.title }}
-                                            </h5>
-                                            <p class="card-text mb-auto ppst-text">
-                                                {{ feature.description|truncatechars:50 }}
-                                            </p>
-                                            <div class="mb-1 text-muted post-date">
-                                                {{ feature.created_date| date:"D j Y " }}
-                                            </div>
-                                           <a href="{% url 'preview_feature' feature.id %}">
-                                                <button type="button" class="badge badge-info">
-                                                    View Feature
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %} 
-                        </div>
-                {% endif %}
-            </div>
-
-            {% comment %} <--------- FEATURES AND BUGS THAT YOU HAVE CREATED YOURSELF ---------> {% endcomment %}
-
-            <div class="tab-pane fade" id="own" role="tabpanel" aria-labelledby="own-tab">
-                {% if ProfileBug %}
-                    <h6 class="mt-3">Bugs</h6>
-                    <div class="row mb-2">
-                        {% for bug in ProfileBug %}
-                            <div class="col-md-4">
-                                <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
-                                    <div class="card-body d-flex flex-column align-items-start">
-                                        <h5 class="post-title">
-                                            {{ bug.title }}
-                                        </h5>
-                                        <a href="{% url 'delete_bug' bug.id %}">
-                                            <button type="button" class="close right-corner" aria-label="Close">
-                                                <span aria-hidden="true">
-                                                    &times;
-                                                </span>
-                                            </button>
-                                        </a>
-                                        <p class="card-text mb-auto post-text">
-                                            {{ bug.description|truncatechars:65 }}
-                                        </p>
-                                        <div class="mb-1 text-muted post-date">
-                                            {{ bug.created_date| date:"D j Y " }}
-                                        </div>
-                                        <a href="{% url 'preview_bug' bug.id %}">
-                                            <button type="button" class="badge badge-info">
-                                                View Bug
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-
-                {% if ProfileFeature %}
-                    <h6>Features</h6>
-                        <div class="row mb-2">
-                            {% for feature in ProfileFeature %}
-                                <div class="col-md-4">
-                                    <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
-                                        <div class="card-body d-flex flex-column align-items-start">
-                                            <a href="{% url 'delete_feature' feature.id %}">
-                                                <button type="button" class="close right-corner" aria-label="Close">
-                                                    <span aria-hidden="true">
-                                                        &times;
-                                                    </span>
-                                                </button>
-                                            </a>
-                                            <h3 class="mb-0">
-                                                <a class="text-dark post-tite">
-                                                    {{ feature.title }}
-                                                </a>
-                                            </h3>
-                                            <div class="mb-1 text-muted post-date">
-                                                {{ feature.created_date| date:"D j Y " }}
-                                            </div>
-                                            <p class="card-text mb-auto post-text">
-                                                {{ feature.description|truncatechars:50 }}
-                                            </p>
-                                             <a href="{% url 'preview_feature' feature.id %}">
-                                                <button type="button" class="badge badge-info">
-                                                    View Feature
-                                                </button>
-                                            </a>    
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %} 
-                        </div>
-                {% endif %}
+            {% endfor %}
         </div>
-    </div>
+    {% endif %}
+    {% if ProfileFeature %}
+        <h5>Features</h5>
+            <div class="row mb-2">
+                {% for feature in ProfileFeature %}
+                    <div class="col-md-4">
+                        <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
+                            <div class="card-body d-flex flex-column align-items-start">
+                                <a href="{% url 'delete_feature' feature.id %}">
+                                    <button type="button" class="close right-corner" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            &times;
+                                        </span>
+                                    </button>
+                                </a>
+                                <h5 class="post-title">
+                                    {{ feature.title }}
+                                </h5>
+                                <p class="card-text mb-auto ppst-text">
+                                    {{ feature.description|truncatechars:50 }}
+                                </p>
+                                <div class="mb-1 text-muted post-date">
+                                    {{ feature.created_date| date:"D j Y " }}
+                                </div>
+                                <a href="{% url 'preview_feature' feature.id %}">
+                                    <button type="button" class="badge badge-info">
+                                        View Feature
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %} 
+            </div>
+    {% endif %}
 </div>
 
 {% endblock %}

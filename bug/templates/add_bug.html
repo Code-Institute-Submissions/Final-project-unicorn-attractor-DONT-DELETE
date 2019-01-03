@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Add Bug{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="container text-center">
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form|crispy }}
+            
+            <a href="{% url 'home' %}" role="button" class="btn btn-danger">
+                No, return to home!
+            </a>
+            <button type="submit" class="btn btn-success">
+                Yes, Add to profile! 
+            </button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

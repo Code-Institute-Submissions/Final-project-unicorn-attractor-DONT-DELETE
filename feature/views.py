@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth, messages
 from .models import Feature
-from .forms import New_posts, Comment_form
+from .forms import New_posts, Comment_form, FeatureComment
 
 
 @login_required
@@ -24,12 +24,15 @@ def create_feature(request):
 def preview_feature(request, id):
     
     feature = get_object_or_404(Feature, pk=id)
-    comment = Comment_form
+    feature_comments = get_object_or_404(FeatureComment, pk=id)
+    comment_form = Comment_form
     feature.views += 1
+    
 
     context = {
         "post": feature,
-        "comment": comment,
+        "comment_form": comment_form,
+        "comments": feature_comments,
     }
     return render(request, "preview_feature.html", context)
 

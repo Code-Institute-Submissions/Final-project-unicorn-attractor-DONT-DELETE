@@ -2,20 +2,19 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}Create Bug{% endblock %}
+{% block title %}Create a Bug{% endblock %}
 
 {% block content %}
 <div class="container">
+
     <h4>Create a Bug</h4>
 
     <form method="POST">
         {% csrf_token %} 
+        {{ form|crispy }}
 
-    {{ form|crispy }}
-    
-        <button type="submit" class="btn btn-primary">Add your Bug</button>
+        <button type="submit" class="btn btn-primary">Create Bug</button>
     </form>
-
 </div>
 
 {% endblock %}

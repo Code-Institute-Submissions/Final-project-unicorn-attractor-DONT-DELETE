@@ -17,17 +17,22 @@ Bug Preview
             </span>
             <i class="fas fa-bug"></i>
                 {{ bug.subject|capfirst }} : {{ bug.title }}
-            <p class="mt-2">created : {{ bug.created_date|date:"F d, Y" }}</p>
+            <p class="mt-2">Created : {{ bug.created_date|date:"F d, Y" }}</p>
+            <p class="mt-2">Current Status : {{ bug.status }}</p>
         </div>
         <div class="card-body">
             <h5 class="card-title">{{ bug.title }}</h5>
             <p class="card-text">{{ bug.description }}</p>
         </div>
     </div>
-    <button type="button" id="profile-edit" class="btn btn-primary btn-sm mt-3"
-                data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
+
+    <div>    
+        <button type="button" id="profile-edit" class="btn btn-primary btn-sm mt-3"
+                    data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
+                    <i class="fa fa-reply" aria-hidden="true"></i>
                     Leave a Comment
-    </button>
+        </button>
+    </div>
 
 
     <div class="mt-3">

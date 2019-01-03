@@ -2,30 +2,13 @@ from django.shortcuts import render
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-from .forms import New_posts, Comment_form
+from .forms import New_posts, Comment_form, Bug_status
 from .models import Bug
-
-# Create your views here.
-@login_required
-def create_bug(request):
-    if request.method == "POST":
-        form = New_posts(request.POST)
-
-        if form.is_valid():
-            bug = form.save(commit=False)
-            bug.author = request.user
-            bug.save()
-            messages.success(request, "Your post has been created!")
-            return redirect(reverse("profile"))
-    else:
-        form = New_posts()
-
-    return render(request, "new_bug.html", {'form': form})
-
 
 def preview_bug(request, id):
 
     bug = get_object_or_404(Bug, pk=id)
+    # bug_comment = Comment_form.objects.filter(bug=bug.pk)
     bug.views += 1
 
     if request.method == "POST":
@@ -36,7 +19,6 @@ def preview_bug(request, id):
             comments.bug = bug
             comments.author = request.user
             comments.save()
-
             return redirect(reverse("home"))
 
     else:
@@ -47,6 +29,67 @@ def preview_bug(request, id):
             "comment": comment,
             }
     return render(request, "preview_bug.html", context)
+
+@login_required
+def create_bug(request):
+    form = New_posts()
+    if request.method == "POST":
+        form = New_posts(request.POST)
+        if form.is_valid():
+            bug = form.save(commit=False)
+            bug.author = request.user
+            bug.save()
+            messages.success(request, "Your post has been created!")
+            return redirect(reverse("profile"))
+    else:
+        context = {
+            "form":form,
+        }
+    return render(request, "create_bug.html", context)
+
+@login_required
+def edit_bug(request, id):
+    edit_bug = get_object_or_404(Bug, pk=id)
+
+    if request.method == "POST":
+        form = Bug_status(request.POST, instance=edit_bug)
+
+        if form.is_valid():
+            bug = form.save(commit=False)
+            bug.author = request.user
+            bug.save()
+            messages.success(request, "Your post has been successful!")
+            return redirect(preview_bug, bug.id)
+    else:
+        form = New_posts(instance=edit_bug)
+        status = Bug_status(instance=edit_bug)
+        context = {
+            "form": form,
+            "status": status,
+        }
+    return render(request, "edit_bug.html", context)
+
+
+@login_required
+def add_bug(request, id):
+    add_bug = get_object_or_404(Bug, pk=id)
+
+    if request.method == "POST":
+        form = New_posts(request.POST, instance=add_bug)
+    
+        if form.is_valid():
+            bug = form.save(commit=False)
+            bug.assigned = request.user
+            bug.save()
+            messages.success(request, "Congratulations post added!")
+            return redirect(preview_bug, bug.id)
+    else:
+        form = New_posts(instance=add_bug)
+        context = {
+            "form":form
+        }
+    
+    return render(request, "add_bug.html", context)
 
 @login_required
 def delete_bug(request, id):

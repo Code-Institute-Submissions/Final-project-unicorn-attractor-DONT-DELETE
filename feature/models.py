@@ -4,19 +4,17 @@ from django.contrib.auth.models import User
 
 class Feature(models.Model):
 
-    app_choices = [
-        ("bug", "Bug"),
-        ("feature", "Feature")
-    ]
+    # app_choices = [
+    #     ("bug", "Bug"),
+    #     ("feature", "Feature")
+    # ]
 
     title = models.CharField(max_length=100)
     description = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     views = models.IntegerField(default=0)
     upvote = models.IntegerField(default=0)
-    price = models.DecimalField(max_digits=6, decimal_places=2, default=2.99)
-    subject = models.CharField(
-        max_length=10, choices=app_choices, default="bug")
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=1.99)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

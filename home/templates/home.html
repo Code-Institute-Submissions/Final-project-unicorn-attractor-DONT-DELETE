@@ -27,31 +27,20 @@
             <hr>
             <div class="row mb-2">
                 {% for bug in bugs %}
-                    <div class="col-md-6">
-                        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                    <div class="col-md-4">
+                        <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
                             <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-primary">
-                                    {{ bug.author }}
-                                </strong>
-                                <span class="badge badge-primary views-display">
-                                    Views
-                                    <span class="badge badge-light">
-                                        {{ bug.views }}
-                                    </span>
-                                </span>
-                                <h3 class="mb-0">
-                                    <a class="text-dark" href="#">
-                                        {{ bug.title }}
-                                    </a>
-                                </h3>
-                                <div class="mb-1 text-muted">
+                                <h5 class="post-title">
+                                    {{ bug.title }}
+                                </h5>
+                                <p class="card-text mb-auto post-text">
+                                    {{ bug.description|truncatechars:65 }}
+                                </p>
+                                <div class="mb-1 text-muted post-date">
                                     {{ bug.created_date| date:"D j Y " }}
                                 </div>
-                                <p class="card-text mb-auto">
-                                    {{ bug.description|truncatechars:50 }}
-                                </p>
                                 <a href="{% url 'preview_bug' bug.id %}">
-                                    <button type="button" class="btn btn-info btn-sm mt-3">
+                                    <button type="button" class="badge badge-info">
                                         View Bug
                                     </button>
                                 </a>
@@ -70,32 +59,21 @@
             </p>
             <div class="row mb-2">
                 {% for feature in features %}
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start">
-                                <strong class="d-inline-block mb-2 text-primary">
-                                    {{ feature.author }}
-                                </strong>
-                                <span class="badge badge-primary views-display">
-                                        Views
-                                    <span class="badge badge-light">
-                                        {{ feature.views }}
-                                    </span>
-                                </span>
-                                <h3 class="mb-0">
-                                    <a class="text-dark">
-                                        {{ feature.title }}
-                                    </a>
-                                </h3>
-                                <div class="mb-1 text-muted">
-                                    {{ feature.created_date| date:"D j Y " }}
-                                </div>
+                            <div class="card-body d-flex flex-column align-items-start card-display">
+                                <h5 class="post-title">
+                                   {{ feature.title }}
+                                </h5>
                                 <p class="card-text mb-auto">
                                     {{ feature.description|truncatechars:50 }}
                                 </p>
+                                <div class="mb-1 text-muted post-date">
+                                    {{ feature.created_date| date:"D j Y " }}
+                                </div>
                                 <a href="{% url 'preview_feature' feature.id %}">
-                                    <button type="button" class="btn btn-info btn-sm mt-3">
-                                        View post
+                                    <button type="button" class="badge badge-info">
+                                        View Feature
                                     </button>
                                 </a>
                             </div>

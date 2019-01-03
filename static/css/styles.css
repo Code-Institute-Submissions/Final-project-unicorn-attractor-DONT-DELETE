@@ -32,11 +32,7 @@ body{
 .profile-form {
     display: none;
 }
-.views-display {
-    position: absolute;
-    top: 25px;
-    right: 20px;
-}
+
 .right-corner {
     position: absolute;
     top: 15px;
@@ -47,4 +43,23 @@ body{
     text-decoration: underline;
     color: #000000;
     margin: 0 2px;
+}
+.card-display {
+    min-height: 200px !important;
+}
+
+.card-display:hover {   
+    box-shadow: 2px 5px #bebebe !important;
+}
+.post-title {
+    text-decoration: underline;
+}
+.post-date {
+    font-size: 14px;
+}   
+.post-text {
+    font-size: 14px;
+}
+.todo-display {
+    margin: 10px 0 10px 20px;
 }

@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 class Bug(models.Model):
     app_choices = [
-         ("Todo", "To do"),
          ("Doing", "Doing"),
          ("Done", "Done")
      ]
@@ -24,7 +23,6 @@ class Bug(models.Model):
 
 class BugStatus(models.Model):
     app_choices = [
-        ("Todo", "To do"),
         ("Doing", "Doing"),
         ("Done", "Done")
     ]

@@ -26,7 +26,7 @@ def register(request):
 
 @login_required
 def profile(request):
-
+    
     if request.method == "POST":
         User_profile = UpdateProfile(request.POST, instance=request.user)
         User_image = UpdateImage(request.POST,
@@ -44,11 +44,16 @@ def profile(request):
         User_image = UpdateImage(instance=request.user.profile)
 
         ProfileBug = Bug.objects.filter(author=request.user)
+        BugsAssigned = Bug.objects.filter(assigned=request.user)
         ProfileFeature = Feature.objects.filter(author=request.user)
+        
+        
+        
 
     context = {
         "User_profile": User_profile,
         "User_image": User_image,
+        "AssignedBug": BugsAssigned,
         "ProfileBug": ProfileBug,
         "ProfileFeature": ProfileFeature,
     }

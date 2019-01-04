@@ -56,84 +56,135 @@
     </p>
     <hr>
 
-    <h2 class="mb-2">
-        <u> Your Posts</u>
-    </h2>
+    {% comment %} <--------- YOUR OWN FEATURES AND BUGS  ---------> {% endcomment %}
+    
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Bugs In progress</a>
+        </li>
+    </ul>
 
     {% comment %} <--------- YOUR OWN FEATURES AND BUGS  ---------> {% endcomment %}
-    <h5>Bugs</h5>
-    {% if ProfileBug %}
-        <div class="row mb-2">
-            {% for bug in ProfileBug %}
-                <div class="col-md-4">
-                    <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
-                        <div class="card-body d-flex flex-column align-items-start">
-                            <h5 class="post-title">
-                                {{ bug.title }}
-                            </h5>
-                            <a href="{% url 'delete_bug' bug.id %}">
-                                <button type="button" class="close right-corner" aria-label="Close">
-                                    <span aria-hidden="true">
-                                        &times;
-                                    </span>
-                                </button>
-                            </a>
-                            <p class="card-text mb-auto post-text">
-                                {{ bug.description|truncatechars:65 }}
-                            </p>
-                            <div class="mb-1 text-muted post-date">
-                                {{ bug.created_date| date:"D j Y " }}
-                            </div>
-                            <a href="{% url 'preview_bug' bug.id %}">
-                                <button type="button" class="badge badge-info">
-                                    View Bug
-                                </button>
-                            </a>
-                            <a href="{% url 'edit_bug' bug.id %}">
-                                <button type="button" class="badge badge-primary">
-                                    Edit Bug
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-    {% if ProfileFeature %}
-        <h5>Features</h5>
-            <div class="row mb-2">
-                {% for feature in ProfileFeature %}
-                    <div class="col-md-4">
-                        <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
-                            <div class="card-body d-flex flex-column align-items-start">
-                                <a href="{% url 'delete_feature' feature.id %}">
-                                    <button type="button" class="close right-corner" aria-label="Close">
-                                        <span aria-hidden="true">
-                                            &times;
-                                        </span>
-                                    </button>
-                                </a>
-                                <h5 class="post-title">
-                                    {{ feature.title }}
-                                </h5>
-                                <p class="card-text mb-auto ppst-text">
-                                    {{ feature.description|truncatechars:50 }}
-                                </p>
-                                <div class="mb-1 text-muted post-date">
-                                    {{ feature.created_date| date:"D j Y " }}
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <h5>Bugs</h5>
+            {% if ProfileBug %}
+                <div class="row mb-2">
+                    {% for bug in ProfileBug %}
+                        <div class="col-md-4">
+                            <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <h5 class="post-title">
+                                        {{ bug.title }}
+                                    </h5>
+                                    <a href="{% url 'delete_bug' bug.id %}">
+                                        <button type="button" class="close right-corner" aria-label="Close">
+                                            <span aria-hidden="true">
+                                                &times;
+                                            </span>
+                                        </button>
+                                    </a>
+                                    <p class="card-text mb-auto post-text">
+                                        {{ bug.description|truncatechars:65 }}
+                                    </p>
+                                    <div class="mb-1 text-muted post-date">
+                                        {{ bug.created_date| date:"D j Y " }}
+                                    </div>
+                                    <a href="{% url 'preview_bug' bug.id %}">
+                                        <button type="button" class="badge badge-info">
+                                            View Bug
+                                        </button>
+                                    </a>
+                                    <a href="{% url 'edit_bug' bug.id %}">
+                                        <button type="button" class="badge badge-primary">
+                                            Edit Bug
+                                        </button>
+                                    </a>
                                 </div>
-                                <a href="{% url 'preview_feature' feature.id %}">
-                                    <button type="button" class="badge badge-info">
-                                        View Feature
-                                    </button>
-                                </a>
                             </div>
                         </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if ProfileFeature %}
+                <h5>Features</h5>
+                    <div class="row mb-2">
+                        {% for feature in ProfileFeature %}
+                            <div class="col-md-4">
+                                <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
+                                    <div class="card-body d-flex flex-column align-items-start">
+                                        <a href="{% url 'delete_feature' feature.id %}">
+                                            <button type="button" class="close right-corner" aria-label="Close">
+                                                <span aria-hidden="true">
+                                                    &times;
+                                                </span>
+                                            </button>
+                                        </a>
+                                        <h5 class="post-title">
+                                            {{ feature.title }}
+                                        </h5>
+                                        <p class="card-text mb-auto ppst-text">
+                                            {{ feature.description|truncatechars:50 }}
+                                        </p>
+                                        <div class="mb-1 text-muted post-date">
+                                            {{ feature.created_date| date:"D j Y " }}
+                                        </div>
+                                        <a href="{% url 'preview_feature' feature.id %}">
+                                            <button type="button" class="badge badge-info">
+                                                View Feature
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %} 
                     </div>
-                {% endfor %} 
-            </div>
-    {% endif %}
+            {% endif %}
+        </div>
+
+        {% comment %} <---------  BUGS CURRENTLY WORKING ON ---------> {% endcomment %}
+
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <h5>Bugs</h5>
+            {% if AssignedBug %}
+                <div class="row mb-2">
+                    {% for bug in AssignedBug %}
+                        <div class="col-md-4">
+                            <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
+                                <div class="card-body d-flex flex-column align-items-start">
+                                    <h5 class="post-title">
+                                        {{ bug.title }}
+                                    </h5>
+                                    <p class="card-text mb-auto post-text">
+                                        {{ bug.description|truncatechars:65 }}
+                                    </p>
+                                    <div class="mb-1 text-muted post-date">
+                                        {{ bug.created_date| date:"D j Y " }}
+                                    </div>
+                                    <a href="{% url 'preview_bug' bug.id %}">
+                                        <button type="button" class="badge badge-info">
+                                            View Bug
+                                        </button>
+                                    </a>
+                                    <a href="{% url 'edit_bug' bug.id %}">
+                                        <button type="button" class="badge badge-primary">
+                                            Edit Bug
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
 </div>
 
 {% endblock %}

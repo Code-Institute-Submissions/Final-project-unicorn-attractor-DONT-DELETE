@@ -6,7 +6,7 @@ from .forms import New_posts, Comment_form, Bug_status
 from .models import Bug
 
 def preview_bug(request, id):
-
+    
     bug = get_object_or_404(Bug, pk=id)
     # bug_comment = Comment_form.objects.filter(bug=bug.pk)
     bug.views += 1
@@ -69,6 +69,7 @@ def edit_bug(request, id):
         }
     return render(request, "edit_bug.html", context)
 
+# NEED TO CHANGE MODEL FOR USER ON ADD FIELD AS ISNT VALID,   
 
 @login_required
 def add_bug(request, id):
@@ -79,7 +80,8 @@ def add_bug(request, id):
     
         if form.is_valid():
             bug = form.save(commit=False)
-            bug.assigned = request.user
+            bug.assigned = str(request.user)
+            bug.status = "Doing"
             bug.save()
             messages.success(request, "Congratulations post added!")
             return redirect(preview_bug, bug.id)

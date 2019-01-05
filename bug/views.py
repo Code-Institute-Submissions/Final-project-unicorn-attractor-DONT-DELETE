@@ -2,14 +2,15 @@ from django.shortcuts import render
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
-from .forms import New_posts, Comment_form, Bug_status
+from .forms import New_posts, Comment_form, Bug_status, BugComment
 from .models import Bug
 
 def preview_bug(request, id):
     
     bug = get_object_or_404(Bug, pk=id)
-    # bug_comment = Comment_form.objects.filter(bug=bug.pk)
     bug.views += 1
+    all_comments = BugComment.objects.filter(bug=bug)
+
 
     if request.method == "POST":
         comment = Comment_form(request.POST)
@@ -19,14 +20,14 @@ def preview_bug(request, id):
             comments.bug = bug
             comments.author = request.user
             comments.save()
-            return redirect(reverse("home"))
+            return redirect(preview_bug, bug.id)
 
     else:
         comment = Comment_form()
-
         context = {
             "bug": bug,
             "comment": comment,
+            "comments": all_comments,
             }
     return render(request, "preview_bug.html", context)
 
@@ -68,9 +69,7 @@ def edit_bug(request, id):
             "status": status,
         }
     return render(request, "edit_bug.html", context)
-
-# NEED TO CHANGE MODEL FOR USER ON ADD FIELD AS ISNT VALID,   
-
+  
 @login_required
 def add_bug(request, id):
     add_bug = get_object_or_404(Bug, pk=id)

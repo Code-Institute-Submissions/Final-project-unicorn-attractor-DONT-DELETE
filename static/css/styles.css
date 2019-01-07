@@ -57,4 +57,13 @@ body{
     top: 13px;
     right: 20px;
 }
-
+.card-preview-title {
+    margin-top: -25px;
+}
+.status-tabs {
+    margin: 0px 20px 10px 20px;     
+}
+.main-nav li a:hover {
+    background-color: rgba(34, 34, 34, 0.151); 
+    border-radius: 10%;
+}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Update / Edit Feature{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h4>Update / Edit Feature</h4>
+
+    <form method="POST">
+    {% csrf_token %} 
+
+    {{ status|crispy }}
+    
+        <button type="submit" class="btn btn-primary">Post Feature</button>
+    </form>
+
+</div>
+
+{% endblock %}

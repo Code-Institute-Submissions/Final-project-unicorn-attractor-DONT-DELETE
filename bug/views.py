@@ -9,8 +9,8 @@ def preview_bug(request, id):
     
     bug = get_object_or_404(Bug, pk=id)
     bug.views += 1
+    # bug.save()
     all_comments = BugComment.objects.filter(bug=bug)
-
 
     if request.method == "POST":
         comment = Comment_form(request.POST)
@@ -30,6 +30,14 @@ def preview_bug(request, id):
             "comments": all_comments,
             }
     return render(request, "preview_bug.html", context)
+
+
+def upvote_bug(request, id):
+    bug = get_object_or_404(Bug, pk=id)
+    bug.upvotes += 1
+    bug.save()
+
+    return redirect("home")
 
 @login_required
 def create_bug(request):

@@ -9,58 +9,50 @@ Bug Preview
 {% block content %}
 
 <div class="container">
-    <div class="card mt-1">
+    <div class="card">
         <div class="card-header">
-            <span class="badge badge-primary float-right">Views 
-                <span class="badge badge-light">
-                        {{ bug.views }}
+            <div> 
+                <span class="badge badge-success float-right">Upvotes
+                    <span class="badge badge-light">
+                            {{ bug.upvotes }}
+                    </span>
                 </span>
-            </span>
-            <i class="fas fa-bug"></i>
-                {{ bug.subject|capfirst }} : {{ bug.title }}
-            <p class="mt-2">Created : {{ bug.created_date|date:"F d, Y" }}</p>
-            <p class="mt-2">Current Status : {{ bug.status }}</p>
+                <br>
+                <span class="badge badge-primary float-right">Views
+                    <span class="badge badge-light">
+                            {{ bug.views }}
+                    </span>
+                </span>
+            </div>
+            <h4 class="card-preview-title">
+                <i class="fas fa-bug"></i>
+                {{ bug|capfirst }}
+            </h4>
+            <span class="mt-2">Created : {{ bug.created_date|date:"F d, Y" }}</span>
+            <br>
+            <span class="mt-2">Current Status : {{ bug.status }}</span>
+            <br>
             {% if bug.assigned != "" %}
-                <p class="mt-2">Assigned to : {{ bug.assigned }}</p>
+                <span class="mt-2">Assigned to : {{ bug.assigned }}</span>
             {% endif %}
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ bug.title }}</h5>
             <p class="card-text">{{ bug.description }}</p>
+        </div>
+        <div class="card-footer text-muted">
+           <button type="button" id="profile-edit" class="btn btn-primary btn-sm"
+                        data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
+                <i class="fa fa-reply" aria-hidden="true"></i>
+                Leave a Comment
+            </button>
+            <a href="{% url 'upvote_bug' bug.id %}" class="btn btn-sm btn-success">
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                Upvote Bug
+                </a>
         </div>
     </div>
 
     {% comment %} <------------- BUG COMMENTS ---------------> {% endcomment %}
-    <h4 class="mt-3">Comments</h4>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Author</th>
-                <th style=" width: 85%;"scope="col">Comment</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for comment in comments %}
-            {{loop.index}}
-            <tr>
-                <th scope="row">
-                    {{ comment.author }}
-                </th>
-                <td>
-                    {{ comment }}
-                </td>
-            </tr>
-            {% endfor%}
-        </tbody>
-    </table>
-    <div>    
-        <button type="button" id="profile-edit" class="btn btn-primary btn-sm mt-3"
-                    data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
-                    <i class="fa fa-reply" aria-hidden="true"></i>
-                    Leave a Comment
-        </button>
-    </div>
-
 
     <div class="mt-3">
         <form method="POST" id="collapseComment" class="mt-3 profile-form collapse">
@@ -71,6 +63,28 @@ Bug Preview
             <button type="submit" class="btn btn-sm btn-primary">Add comment</button>
         </form>
     </div>
+
+    <h4 class="mt-3">Comments</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Author</th>
+                <th style=" width: 85%;"scope="col">Comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comment in comments %}
+                <tr>
+                    <th scope="row">
+                        {{ comment.author }}
+                    </th>
+                    <td>
+                        {{ comment }}
+                    </td>
+                </tr>
+            {% endfor%}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
 

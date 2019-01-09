@@ -10,9 +10,9 @@
     <h4>Update / Edit Feature</h4>
 
     <form method="POST">
-    {% csrf_token %} 
+        {% csrf_token %} 
 
-    {{ status|crispy }}
+        {{ form|crispy }}
     
         <button type="submit" class="btn btn-primary">Post Feature</button>
     </form>

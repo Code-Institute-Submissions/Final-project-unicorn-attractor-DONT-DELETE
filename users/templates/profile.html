@@ -99,10 +99,8 @@
                                             View Bug
                                         </button>
                                     </a>
-                                    <a href="{% url 'edit_bug' bug.id %}">
-                                        <button type="button" class="badge badge-primary">
-                                            Edit Bug
-                                        </button>
+                                    <a class="badge badge-primary" href="{% url 'edit_bug' bug.id %}">
+                                        Edit Bug
                                     </a>
                                 </div>
                             </div>
@@ -134,10 +132,11 @@
                                         <div class="mb-1 text-muted post-date">
                                             {{ feature.created_date| date:"D j Y " }}
                                         </div>
-                                        <a href="{% url 'preview_feature' feature.id %}">
-                                            <button type="button" class="badge badge-info">
-                                                View Feature
-                                            </button>
+                                        <a class="badge badge-info" href="{% url 'preview_feature' feature.id %}">
+                                            View Feature
+                                        </a>
+                                        <a class="badge badge-primary" href="{% url 'edit_feature' feature.id %}">
+                                            Edit Feature
                                         </a>
                                     </div>
                                 </div>

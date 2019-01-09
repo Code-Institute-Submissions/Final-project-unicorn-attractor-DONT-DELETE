@@ -22,6 +22,7 @@ from users import urls as users_urls
 from bug import urls as bug_urls
 from feature import urls as feature_urls
 from home import urls as home_urls
+from cart import urls as cart_urls
 
 urlpatterns = [
     url('admin/', admin.site.urls),
@@ -29,6 +30,7 @@ urlpatterns = [
     url(r'users/', include(users_urls)),
     url(r'bug/', include(bug_urls)),
     url(r'feature/', include(feature_urls)),
+    url(r'cart/', include(cart_urls)),
 ]
 
 if settings.DEBUG:

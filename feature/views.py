@@ -61,10 +61,10 @@ def create_feature(request):
 
 @login_required
 def edit_feature(request, id):
-    edit_feature = get_object_or_404(Feature, pk=id)
+    feature = get_object_or_404(Feature, pk=id)
 
     if request.method == "POST":
-        form = feature_status(request.POST, instance=edit_feature)
+        form = New_posts(request.POST, instance=feature)
 
         if form.is_valid():
             feature = form.save(commit=False)
@@ -73,11 +73,10 @@ def edit_feature(request, id):
             messages.success(request, "Your post has been successful!")
             return redirect(preview_feature, feature.id)
     else:
-        form = New_posts(instance=edit_feature)
-        status = feature_status(instance=edit_feature)
+        form = New_posts(instance=feature)
+        
         context = {
             "form": form,
-            "status": status,
         }
     return render(request, "edit_feature.html", context)
 

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'bug.apps.BugConfig',
     'feature.apps.FeatureConfig',
     'home.apps.HomeConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [

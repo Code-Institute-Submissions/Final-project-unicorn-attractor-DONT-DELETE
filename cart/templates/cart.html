@@ -6,38 +6,51 @@
 
 {% block content %}
 <div class="container">
-    <h2>Your Cart</h2>
+    <h2 class="mb-3">Your Cart</h2>
     <div class="cart-table">
         <table class="table">
             <thead>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                    <th style="width: 10%;"scope="col"></th>
+                    <th scope="col">Product</th>
+                    <th scope="col"></th>
+                    <th scope="col">Price</th>
+                    <th style="width: 10%;" scope="col">Total</th>
                 </tr>
             </thead>
             <tbody>
+                {% for item in cart_items %}
                 <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                    <th scope="row"> 
+                        <a href="{% url 'delete_cart' item.feature.id %}" type="button" class="close btn-sm" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </th>
+                    <td>
+                        {{ item.feature }}
+                    </td>
+                    <td></td>
+                    <td>
+                        {{ item.feature.price }}
+                    </td>
+                    <td>
+                    </td>
                 </tr>
+                {% endfor %}
                 <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
+                    <th scope="row">
+                        <td>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            £{{ total }}
+                        </td>
+                    </th> 
                 </tr>
             </tbody>
         </table>
+        <a href="#" class="btn btn-secondary" role="button">Checkout</a>
     </div>
 </div>
 {% endblock %}

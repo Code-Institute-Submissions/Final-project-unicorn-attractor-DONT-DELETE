@@ -67,3 +67,12 @@ body{
     background-color: rgba(34, 34, 34, 0.151); 
     border-radius: 10%;
 }
+.table {
+    width: 80%;
+}
+.cart-table {
+    margin-left: 10%;
+}
+.cart-badge {
+    font-size: 13px;
+}

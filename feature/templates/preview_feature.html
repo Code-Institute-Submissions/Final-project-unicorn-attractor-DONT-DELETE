@@ -39,12 +39,13 @@ Feature Preview
         <div class="card-footer text-muted">
             <p class="mt-2">Price : £{{ feature.price }}</p>
             <div>
-                <a href="#" class="btn btn-sm btn-success">
-                    <small>
+            <form method="POST" action="{% url 'add_to_cart' feature.id %}">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-success mt-1" type="submit">
                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                     Add to Cart
-                    </small>
-                </a>    
+                </button>
+            </form>   
             </div>
             <div class="mt-1">
                 <a href="{% url 'upvote_feature' feature.id %}" class="btn btn-sm btn-info">

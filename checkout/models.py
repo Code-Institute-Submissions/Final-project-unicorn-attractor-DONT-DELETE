@@ -13,7 +13,7 @@ class Order(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return "{0}-{1}-{2}".format(self.id, self.date, self.fullname)
+        return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False)

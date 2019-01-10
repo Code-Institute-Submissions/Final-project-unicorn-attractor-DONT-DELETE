@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'feature.apps.FeatureConfig',
     'home.apps.HomeConfig',
     'cart.apps.CartConfig',
+    'checkout.apps.CheckoutConfig',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,6 @@ LOGIN_REDIRECT_URL = 'home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "photos")
 MEDIA_URL = '/photos/'
+
+STRIPE_PUBLISHABLE = os.getenv("STRIPE_PUBLISHABLE")
+STRIPE_SECRET = os.getenv("STRIPE_SECRET")

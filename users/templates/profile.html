@@ -72,6 +72,7 @@
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <h5>Bugs</h5>
+            <hr>
             {% if ProfileBug %}
                 <div class="row mb-2">
                     {% for bug in ProfileBug %}
@@ -94,12 +95,10 @@
                                     <div class="mb-1 text-muted post-date">
                                         {{ bug.created_date| date:"D j Y " }}
                                     </div>
-                                    <a href="{% url 'preview_bug' bug.id %}">
-                                        <button type="button" class="badge badge-info">
-                                            View Bug
-                                        </button>
+                                    <a href="{% url 'preview_bug' bug.id %}" class="badge badge-info">
+                                        View Bug
                                     </a>
-                                    <a class="badge badge-primary" href="{% url 'edit_bug' bug.id %}">
+                                    <a class="badge badge-primary mt-1" href="{% url 'edit_bug' bug.id %}">
                                         Edit Bug
                                     </a>
                                 </div>
@@ -111,6 +110,7 @@
 
             {% if ProfileFeature %}
                 <h5>Features</h5>
+                <hr>
                     <div class="row mb-2">
                         {% for feature in ProfileFeature %}
                             <div class="col-md-4">
@@ -135,7 +135,7 @@
                                         <a class="badge badge-info" href="{% url 'preview_feature' feature.id %}">
                                             View Feature
                                         </a>
-                                        <a class="badge badge-primary" href="{% url 'edit_feature' feature.id %}">
+                                        <a class="badge badge-primary mt-1" href="{% url 'edit_feature' feature.id %}">
                                             Edit Feature
                                         </a>
                                     </div>
@@ -150,6 +150,7 @@
 
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <h5>Bugs</h5>
+            <hr>
             {% if AssignedBug %}
                 <div class="row mb-2">
                     {% for bug in AssignedBug %}
@@ -182,7 +183,6 @@
                 </div>
             {% endif %}
         </div>
-
     </div>
 </div>
 

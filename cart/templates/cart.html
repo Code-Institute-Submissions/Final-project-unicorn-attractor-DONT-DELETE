@@ -20,27 +20,29 @@
             </thead>
             <tbody>
                 {% for item in cart_items %}
-                <tr>
-                    <th scope="row"> 
-                        <a href="{% url 'delete_cart' item.feature.id %}" type="button" class="close btn-sm" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </a>
-                    </th>
-                    <td>
-                        {{ item.feature }}
-                    </td>
-                    <td></td>
-                    <td>
-                        {{ item.feature.price }}
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+                    <tr>
+                        <th scope="row"> 
+                            <a href="{% url 'delete_cart' item.feature.id %}">
+                                <button type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
+                                </button>
+                            </a>
+                        </th>
+                        <td>
+                            {{ item.feature }}
+                        </td>
+                        <td></td>
+                        <td>
+                            {{ item.feature.price }}
+                        </td>
+                        <td></td>
+                    </tr>
                 {% endfor %}
                 <tr>
                     <th scope="row">
-                        <td>
-                        </td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td>

@@ -76,3 +76,6 @@ body{
 .cart-badge {
     font-size: 13px;
 }
+.close {
+    border-radius: 50%;
+}

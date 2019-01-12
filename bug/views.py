@@ -9,7 +9,7 @@ def preview_bug(request, id):
     
     bug = get_object_or_404(Bug, pk=id)
     bug.views += 1
-    # bug.save()
+    bug.save()
     all_comments = BugComment.objects.filter(bug=bug)
 
     if request.method == "POST":

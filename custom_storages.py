@@ -1,8 +1,8 @@
 from django.conf import settings
-from storages.backends.s3boto3 import S3BotoStorage
+from storages.backends.s3boto3 import S3Boto3Storage
 
-class StaticStorage(S3BotoStorage):
-    location = settings.STATICFILES
+class StaticStorage(S3Boto3Storage):
+    location = settings.STATICFILES_LOCATION
 
-class PhotoStorage(S3BotoStorage):
+class PhotoStorage(S3Boto3Storage):
     location = settings.PHOTOSFILES_LOCATION

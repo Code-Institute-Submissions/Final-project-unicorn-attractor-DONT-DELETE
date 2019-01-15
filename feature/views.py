@@ -9,7 +9,7 @@ def preview_feature(request, id):
 
     feature = get_object_or_404(Feature, pk=id)
     feature.views += 1
-    # feature.save()
+    feature.save()
     all_comments = FeatureComment.objects.filter(feature=feature)
 
     if request.method == "POST":

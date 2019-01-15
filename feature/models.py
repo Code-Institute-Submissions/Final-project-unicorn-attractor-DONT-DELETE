@@ -7,6 +7,7 @@ class Feature(models.Model):
     description = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     views = models.IntegerField(default=0)
+    purchased = models.IntegerField(default=0)
     upvotes = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     author = models.ForeignKey(User, on_delete=models.CASCADE)

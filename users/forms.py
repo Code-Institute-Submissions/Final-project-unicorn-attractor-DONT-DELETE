@@ -19,7 +19,7 @@ class UpdateProfile(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['email']
 
 class UpdateImage(forms.ModelForm):
     class Meta:

@@ -45,6 +45,12 @@ def checkout(request):
             
             if customer.paid:
                 messages.success(request, "You have successfully paid")
+
+                for id, quantity in cart.items():
+                    feature = get_object_or_404(Feature, pk=id)
+                    feature.purchased += 1  
+                    feature.save()
+
                 request.session['cart'] = {} 
                 return redirect(reverse("profile"))
 

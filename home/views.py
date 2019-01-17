@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from bug.models import Bug
 from feature.models import Feature
 
@@ -12,9 +13,9 @@ def index(request):
 # <--------------- HOMEPAGE ONCE LOGGED IN --------->
 @login_required
 def home(request):
-    
-    bugs = Bug.objects.all()
+
     features = Feature.objects.all()
+    bugs = Bug.objects.all()
 
     context = {
         "bugs": bugs,

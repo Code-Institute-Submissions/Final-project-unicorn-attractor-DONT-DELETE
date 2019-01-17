@@ -1,0 +1,1 @@
+web: gunicorn unicornApp.wsgi:application

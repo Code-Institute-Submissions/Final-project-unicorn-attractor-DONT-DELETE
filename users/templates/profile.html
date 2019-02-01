@@ -186,4 +186,16 @@
     </div>
 </div>
 
+
+<script>
+
+{% comment %} 
+    Small amount of code to operate the edit button for email updating and picture
+{% endcomment %}
+$(document).ready(function() {
+    $("#profile-edit").click(function(){
+        $(".profile-form").toggle();
+    });
+});
+</script>
 {% endblock %}

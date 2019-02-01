@@ -58,7 +58,12 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
+        {% if total == 0 %}
+            <a href="{% url 'checkout' %}" class="btn btn-secondary disabled" role="button">Checkout</a>
+        {% else %}
+            <a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
+        {% endif %}
+
     </div>
 </div>
 {% endblock %}

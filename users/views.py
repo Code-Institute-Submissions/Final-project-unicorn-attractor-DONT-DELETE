@@ -26,7 +26,6 @@ def register(request):
 
 @login_required
 def profile(request):
-    
     if request.method == "POST":
         User_profile = UpdateProfile(request.POST, instance=request.user)
         User_image = UpdateImage(request.POST,

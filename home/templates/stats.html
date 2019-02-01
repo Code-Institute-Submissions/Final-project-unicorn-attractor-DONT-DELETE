@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Statistics{% endblock %}
+{% block content %}
+
+<div class="container mt-3">
+    <h4>Current Statistics</h4>
+
+    <canvas id="BugChart" class="displayGraph" style="padding-left: 16px;"></canvas>
+    <canvas id="InfoChart" class ="displayGraph"></canvas>
+
+    
+</div>
+
+<script>
+    // <------------- GRAPHS CONFIG FOR DISPLAYING DATA ----------> 
+
+    let apiData = '{% url "data_for_graphs" %}' // VARIABLE CAN ONLY BE USED IN TEMPLATE
+
+    $.ajax({
+        method: "GET",
+        url: apiData,
+        success: function(data) {
+            totals = data.totals
+            bugStatus = data.bugStats
+            displayBugs();
+            DisplayWebsiteInfo();
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+
+    function displayBugs(){
+        var Bugs = document.getElementById("BugChart").getContext('2d');
+        var myChart = new Chart(Bugs, {
+            type: 'horizontalBar',
+            data: {
+                labels: ['Todo','Doing','Done'],
+                datasets: [{
+                    data: bugStatus,
+                    backgroundColor: [
+                        '#dc3545',
+                        '#ffa500',
+                        '#28a745',
+                    ],
+                       borderColor: [
+                        '#dc3545',
+                        '#ffa500',
+                        '#28a745',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        },
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Amount of Bugs',
+                        },
+                    }]
+                }
+            }
+        });
+    };
+    function DisplayWebsiteInfo(){
+        var Info = document.getElementById("InfoChart").getContext('2d');
+        var myChart = new Chart(Info, {
+            type: 'horizontalBar',
+            data: {
+                labels: ['Features', 'Bugs', 'Users'],
+                datasets: [{
+                    data: totals,
+                    backgroundColor: [
+                        '#007BFF',
+                        '#28a745',
+                        '#EDFB00',
+                    ],
+                    borderColor: [
+                        '#007BFF',
+                        '#28a745',
+                        '#EDFB00',
+                        
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Total Amount Stats',
+                        },
+                    }]
+                }
+            }
+        });
+    };
+</script>
+{% endblock %}

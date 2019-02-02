@@ -151,7 +151,8 @@
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <h5>Bugs</h5>
             <hr>
-            {% if AssignedBug %}
+            
+            {% if AssignedBug and AssignedBug.status != "Done" %}
                 <div class="row mb-2">
                     {% for bug in AssignedBug %}
                         <div class="col-md-4">

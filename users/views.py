@@ -46,13 +46,16 @@ def profile(request):
         BugsAssigned = Bug.objects.filter(assigned=request.user)
         ProfileFeature = Feature.objects.filter(author=request.user)
         
-        
-        
+        bugStatus = []
 
+        for bugs in BugsAssigned:
+            if bugs.status != "Done":
+                bugStatus.append(bugs)
+        
     context = {
         "User_profile": User_profile,
         "User_image": User_image,
-        "AssignedBug": BugsAssigned,
+        "AssignedBug": bugStatus,
         "ProfileBug": ProfileBug,
         "ProfileFeature": ProfileFeature,
     }

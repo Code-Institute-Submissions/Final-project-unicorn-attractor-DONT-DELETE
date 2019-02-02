@@ -17,17 +17,20 @@ body{
     padding-top: 20px !important;
 }
 .main-content{
-    max-width: 50%;
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    background-color: white;
-    border-radius: 10px;
+    margin: 5% 0 0 10%;
+    font-size: 20px;
+    padding-right: 10%;
+    max-width: 600px;
 }
 .login-register{
+    margin: 5% 0 0 10%;
     width: 50%;
     float: left;
-    margin: 100px;
+
+}
+.indexBtn {
+    color: black;
+    width: 120px;
 }
 .tab-display{
     width: 75% !important;

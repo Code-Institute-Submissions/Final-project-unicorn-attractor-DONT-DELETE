@@ -6,12 +6,13 @@ from .forms import New_posts, Comment_form, Bug_status, BugComment
 from .models import Bug
 
 def preview_bug(request, id):
-    
     bug = get_object_or_404(Bug, pk=id)
-    bug.views += 1
-    bug.save()
-    all_comments = BugComment.objects.filter(bug=bug)
 
+    if request.user != bug.author and bug.assigned:
+        bug.views += 1
+        bug.save()
+
+    all_comments = BugComment.objects.filter(bug=bug)
     if request.method == "POST":
         comment = Comment_form(request.POST)
         
@@ -63,12 +64,18 @@ def edit_bug(request, id):
     if request.method == "POST":
         form = Bug_status(request.POST, instance=edit_bug)
 
-        if form.is_valid():
+        if form.is_valid() and edit_bug.author == request.user:
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
             messages.success(request, "Your post has been successful!")
             return redirect(preview_bug, bug.id)
+        elif form.is_valid():
+            bug = form.save(commit=False)
+            bug.save()
+            messages.success(request, "Your post has been successful!")
+            return redirect(preview_bug, bug.id)
+            
     else:
         form = New_posts(instance=edit_bug)
         status = Bug_status(instance=edit_bug)

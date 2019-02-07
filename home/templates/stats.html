@@ -7,8 +7,61 @@
 
 <div class="container mt-3">
     <h4>Current Statistics</h4>
-    
-    <h5 class="mt-3 text-center">Current Bugs Status</h5>
+
+    <h5 class="mt-5 text-center">Top Viewed Feature</h5>
+    <table class="table top-results">
+    <thead>
+        <tr>
+        <th scope="col"></th>
+        <th scope="col">Feature</th>
+        <th scope="col">Total Views</th>
+        <th scope="col">Purchased</th>
+        </tr>
+    </thead>
+    <tbody>
+       {% for data in topFeature %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                     <a href="{% url 'preview_feature' data.id %}">{{ data }}</a>
+                </td>
+                <td>
+                    {{ data.views }}
+                </td>
+                <td>
+                    {{ data.purchased }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+    <h5 class="mt-5 text-center">Top Viewed Bug</h5>
+    <table class="table top-results">
+    <thead>
+        <tr>
+        <th scope="col"></th>
+        <th scope="col">Bug</th>
+        <th scope="col">Total Views</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in topBug %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>
+                     <a href="{% url 'preview_bug' data.id %}">{{ data }}</a>
+                </td>
+                <td>
+                    {{ data.views }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+
+    <h5 class="mt-5 text-center">Current Bugs Status</h5>
     <canvas id="BugChart" class="displayGraph" style="padding-left: 16px;"></canvas>
     <h5 class="text-center mt-5">Total Bugs/Features and Users</h5>
     <canvas id="InfoChart" class ="displayGraph"></canvas>
@@ -34,6 +87,7 @@
             console.log(error);
         }
     });
+
 
     function displayBugs(){
         var Bugs = document.getElementById("BugChart").getContext('2d');

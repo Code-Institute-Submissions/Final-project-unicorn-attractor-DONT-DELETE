@@ -7,6 +7,15 @@
 <div class="container mt-3">
    <h4>Welcome {{ user.username|capfirst }}</h4>
    <p class="lead text-muted"> Find your way round by the tabs below to view bugs and features. Click on the profile logo at the top to view your own bugs or features and if you wish to create any.</p>
+
+    <div class="searchbar">
+        <input type="text" id="searchValue" class="search_input" placeholder="Search . . .">
+        <i class="fa fa-search search_icon"> 
+        </i>
+    </div>
+
+    <p id="search-matched" class="mt-2 text-center"></p>
+
     <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="Bug-tab" data-toggle="tab" href="#Bug" role="tab" aria-controls="Bug" aria-selected="true">Bugs</a>
@@ -23,27 +32,34 @@
             <p class="lead text-muted tab-display">
                 All the bugs below have been posted by our community that they are currently having issues with and would like help from others in finding a solution. You can choose to upvote this issue or post a comment that will help resolve the bug.
             </p>
+
             <hr>
+
             <div>
                 <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                    <li class="nav-item">
+                    <li class="nav-item pill-tabs">
                         <a class="nav-link active status-tabs" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Todo</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item pill-tabs">
                         <a class="nav-link status-tabs" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Doing</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item pill-tabs">
                         <a class="nav-link status-tabs" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Done</a>
                     </li>
                 </ul>
             </div>
+
+            {% comment %} RESULTS FOR SEARCHBAR DISPLAYED {% endcomment %}
+            <div class="row" id="list-results"></div>
+            <i class="fa fa-spinner fa-spin fa-3x fa-fw justify-content-center"></i>
+
 
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="row">
                         {% for bug in bugs %}
                             {% if bug.status == "Todo" %}
-                                <div class="col-md-4">
+                                <div class="col-md-4 display-wrapper">
                                     <div style="border-left: 5px solid #dc3545" class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
                                         <div class="card-body d-flex flex-column align-items-start">
                                             <h5 class="post-title">
@@ -79,7 +95,7 @@
                     <div class="row">
                         {% for bug in bugs %}
                             {% if bug.status == "Doing" %}
-                                <div class="col-md-4">
+                                <div class="col-md-4 display-wrapper">
                                     <div style="border-left: 5px solid #ffa500" class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
                                         <div class="card-body d-flex flex-column align-items-start">
                                             <h5 class="post-title">
@@ -109,7 +125,7 @@
                     <div class="row">
                         {% for bug in bugs %}
                             {% if bug.status == "Done" %}
-                                <div class=" col-md-4">
+                                <div class=" col-md-4 display-wrapper">
                                     <div style="border-left: 5px solid #28a745" class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
                                         <div class="card-body d-flex flex-column align-items-start">
                                             <h5 class="post-title">
@@ -147,9 +163,9 @@
             <hr>
             <div class="row mb-2">
                 {% for feature in features %}
-                    <div class="col-md-4">
-                        <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-                            <div class="card-body d-flex flex-column align-items-start card-display">
+                    <div class="col-md-4 display-wrapper">
+                        <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
+                            <div class="card-body d-flex flex-column align-items-start">
                                 <h5 class="post-title">
                                    {{ feature.title }}
                                 </h5>

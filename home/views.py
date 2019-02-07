@@ -5,6 +5,7 @@ from bug.models import Bug
 from feature.models import Feature
 from django.contrib.auth.models import User
 from django.http import JsonResponse
+from django.db.models import Max, Count
 
 # <-------------- LANDING PAGE ----------->
 def index(request):    
@@ -28,7 +29,16 @@ def home(request):
 
 def statistics(request):
 
-    return render(request, "stats.html")
+    # Top Viewed bugs/features for table
+
+    top_viewed_bug = Bug.objects.all().order_by('-views')[0:5]
+    top_viewed_feature = Feature.objects.all().order_by('-views')[0:5]
+    
+    results = {
+        'topBug': top_viewed_bug,
+        'topFeature': top_viewed_feature,
+    }
+    return render(request, "stats.html", results)
 
 def data_for_graphs(request):
     """
@@ -44,6 +54,7 @@ def data_for_graphs(request):
     doing = Bug.objects.filter(status='Doing').count()
     done = Bug.objects.filter(status='Done').count()
 
+    
     bugStats = [todo, doing, done]
     totalResults = [total_features, total_bugs, total_users]
     

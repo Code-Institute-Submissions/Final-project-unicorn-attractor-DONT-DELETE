@@ -24,14 +24,24 @@
             <div id="credit-card-errors" style="display: none;">
                 <div id="alert-message block-message error" id="stripe-error-message"></div>
             </div>
-
-
-            {{ order_form|crispy }}
-            {{ payment_form|crispy }}
+            <div class="row text-center">
+                <div class="address-form col col-12 col-md-6 .col-lg-6">
+                    <fieldset class="paymentform">
+                        <legend>Your Details</legend>
+                        {{ order_form|crispy }}
+                    </fieldset>
+                </div>
+                <div class="payment-form col-12 col-md-6 col-lg-6">
+                    <fieldset class="paymentform">
+                        <legend>Payment form</legend>
+                        {{ payment_form|crispy }}
+                        <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+                    </fieldset>
+                </div>
+            </div>
             
             {% csrf_token %} 
             
-            <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
         </form>
 
     </div>

@@ -3,13 +3,13 @@
 {% load crispy_forms_tags %}
 
 {% block head_js %}
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script type="text/javascript">
-    //<![CDATA[
-        Stripe.publishableKey = '{{ publishable }}';
-    //]]>
-    </script>
-    <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+//<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+//]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
 
 {% block title %}
@@ -35,12 +35,12 @@
                     <fieldset class="paymentform">
                         <legend>Payment form</legend>
                         {{ payment_form|crispy }}
+                        {% csrf_token %} 
                         <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
                     </fieldset>
                 </div>
             </div>
             
-            {% csrf_token %} 
             
         </form>
 

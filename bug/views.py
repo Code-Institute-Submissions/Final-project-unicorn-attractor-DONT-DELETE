@@ -97,8 +97,8 @@ def add_bug(request, id):
             bug.assigned = str(request.user)
             bug.status = "Doing"
             bug.save()
-            messages.success(request, "Congratulations post added!")
-            return redirect(preview_bug, bug.id)
+            messages.success(request, "Congratulations bug added!")
+            return redirect("profile")
     else:
         form = New_posts(instance=add_bug)
         context = {

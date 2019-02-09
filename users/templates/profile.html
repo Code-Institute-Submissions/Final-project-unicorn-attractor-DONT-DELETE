@@ -100,9 +100,11 @@
                                     <a href="{% url 'preview_bug' bug.id %}" class="badge badge-info">
                                         View Bug
                                     </a>
-                                    <a class="badge badge-primary mt-1" href="{% url 'edit_bug' bug.id %}">
-                                        Edit Bug
-                                    </a>
+                                    {% if bug.status != "Done" %}
+                                        <a class="badge badge-primary mt-1" href="{% url 'edit_bug' bug.id %}">
+                                            Edit Bug
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

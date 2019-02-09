@@ -5,25 +5,24 @@
 {% block title %}Add Bug{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="container text-center">
-        <form method="POST">
-            <h2>Add Bug</h2>
-            <hr>
-            <p class="lead text-muted"> 
-                Are you sure you want to add this bug? If you process this bug, it will be added to your profile where you can update the author with the progress your making and change the status once completed ?
-            </p>
-            {% csrf_token %}
-            
-            {{ form|crispy}}
+<div class="container text-center add-bug">
+    <form class="add-bug-form" method="POST">
+        <h2>Add Bug</h2>
+        <hr>
+        <p class="lead text-muted"> 
+            Are you sure you want to add this bug? If you process this bug, it will be added to your profile where once completed you can change the status?
+        </p>
+        {% csrf_token %}
+        
+        {{ form|crispy}}
 
-            <a href="{% url 'home' %}" role="button" class="btn btn-danger">
-                No, return to home!
-            </a>
-            <button type="submit" class="btn btn-success">
-            Yes, Add to profile! </button>
-        </form>
-    </div>
+        <a href="{% url 'home' %}" role="button" class="btn btn-danger">
+            No, return to home!
+        </a>
+        <button type="submit" class="btn btn-success">
+        Yes, Add to profile! </button>
+    </form>
 </div>
+
 
 {% endblock %}

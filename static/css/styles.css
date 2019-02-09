@@ -102,6 +102,10 @@ body{
     display: block;
     margin: 20px auto;
 }
+input[type=text]:disabled{
+    background: #dddddd !important;
+
+}
 /* Styling for search button */
   
    .searchbar{
@@ -146,7 +150,6 @@ body{
     #payment-form {
         margin-top: 15px;
     }
-
     /* MEDIA QUERIES */
     @media (max-width: 425px) { 
         .pill-tabs {

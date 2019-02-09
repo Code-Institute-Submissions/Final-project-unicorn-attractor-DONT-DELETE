@@ -42,12 +42,12 @@ def checkout(request):
                     description = request.user.email,
                     card = payment_form.cleaned_data['stripe_id'],
                 )
-                print(request.user.email)
+
             except stripe.error.CardError:
                 messages.error(request, "Your card was declined!")
             
             if customer.paid:
-                messages.success(request, "You have successfully paid")
+                messages.success(request, "Your order has been completed, Thank you")
 
                 for id, quantity in cart.items():
                     feature = get_object_or_404(Feature, pk=id)

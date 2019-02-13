@@ -7,14 +7,15 @@
 {% block content %}
 <div class="container text-center add-bug">
     <form class="add-bug-form" method="POST">
-        <h2>Add Bug</h2>
+        <h2>Add {{ bugDetail.title }}</h2>
         <hr>
         <p class="lead text-muted"> 
             Are you sure you want to add this bug? If you process this bug, it will be added to your profile where once completed you can change the status?
         </p>
         {% csrf_token %}
         
-        {{ form|crispy}}
+        <tr><th><label for="id_title"></label></th><td><input type="hidden" name="title" value="{{ bugDetail.title }}" maxlength="100" required id="id_title" /></td></tr>
+        <tr><th><label for="id_description"></label></th><td><textarea style="display:none;"name="description" cols="40" rows="10" required id="id_description">{{ bugDetail.description }}</textarea></td></tr>
 
         <a href="{% url 'home' %}" role="button" class="btn btn-danger">
             No, return to home!
@@ -23,6 +24,5 @@
         Yes, Add to profile! </button>
     </form>
 </div>
-
 
 {% endblock %}

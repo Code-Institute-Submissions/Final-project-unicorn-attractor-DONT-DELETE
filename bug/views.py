@@ -88,7 +88,7 @@ def edit_bug(request, id):
 @login_required
 def add_bug(request, id):
     add_bug = get_object_or_404(Bug, pk=id)
-
+    
     if request.method == "POST":
         form = New_posts(request.POST, instance=add_bug)
     
@@ -99,12 +99,11 @@ def add_bug(request, id):
             bug.save()
             messages.success(request, "Congratulations bug added!")
             return redirect("profile")
-    else:
-        form = New_posts(instance=add_bug)
-        context = {
-            "form":form
-        }
     
+    context = {
+        "bugDetail":add_bug,
+    }
+
     return render(request, "add_bug.html", context)
 
 @login_required

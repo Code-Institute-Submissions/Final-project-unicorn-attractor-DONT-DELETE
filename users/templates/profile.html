@@ -156,7 +156,7 @@
             <h5>Bugs</h5>
             <hr>
             
-            {% if AssignedBug and AssignedBug.status != "Done" %}
+            {% if AssignedBug > 0 and AssignedBug.status != "Done" %}
                 <div class="row mb-2">
                     {% for bug in AssignedBug %}
                         <div class="col-md-4">
@@ -186,6 +186,8 @@
                         </div>
                     {% endfor %}
                 </div>
+            {% else %}
+                <p>Currently no bugs in progress!</p> 
             {% endif %}
         </div>
     </div>

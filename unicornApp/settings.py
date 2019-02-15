@@ -84,11 +84,11 @@ WSGI_APPLICATION = 'unicornApp.wsgi.application'
 
 
 # Database
-if "DATABASE_URL" in os.environ:
-    DATABASES = { "default": dj_database_url.parse(
-        os.environ.get("DATABASE_URL")) }
+if 'DATABASE_URL' in os.environ:
+    DATABASES = { 'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL')) }
 else:
-    print("Database URL not found. Using SQlite instead")
+    print('Database URL not found. Using SQlite instead')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -143,9 +143,7 @@ AWS_S3_REGION_NAME = 'eu-west-2'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
-
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

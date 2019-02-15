@@ -11,9 +11,36 @@
 
     <form method="POST">
     {% csrf_token %} 
-
-    {{ status|crispy }}
-    
+        <div id="div_id_title" class="form-group"> 
+            <label for="id_title" class="col-form-label  requiredField">
+                Title
+                <span class="asteriskField">*</span>
+            </label> 
+            <div class=""> 
+                <input type="text" name="title" value="{{ edit_bug.title }}" maxlength="100" class="textinput textInput form-control" required id="id_title" />     
+            </div> 
+        </div> 
+        <div id="div_id_description" class="form-group"> 
+            <label for="id_description" class="col-form-label  requiredField">
+                Description
+                <span class="asteriskField">*</span> 
+            </label> 
+            <div class="">
+                <textarea name="description" cols="40" rows="10" class="textarea form-control" required id="id_description">{{ edit_bug.description }}</textarea> 
+            </div> 
+        </div> 
+        <div id="div_id_status" class="form-group"> 
+            <label for="id_status" class="col-form-label  requiredField">
+                Status
+                <span class="asteriskField">*</span> 
+            </label> 
+            <div class=""> 
+                <select name="status" class="select form-control" id="id_status">
+                <option value="Doing" selected>Doing</option> 
+                <option value="Done">Done</option>
+                </select>
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary">Update Bug</button>
     </form>
 

@@ -52,7 +52,7 @@ def profile(request):
             if bugs.status != "Done":
                 bugStatus.append(bugs)
 
-      
+        print(ProfileBug)
                 
     context = {
         "User_profile": User_profile,

@@ -14,9 +14,42 @@
         </p>
         {% csrf_token %}
         
-        <tr><th><label for="id_title"></label></th><td><input type="hidden" name="title" value="{{ bugDetail.title }}" maxlength="100" required id="id_title" /></td></tr>
-        <tr><th><label for="id_description"></label></th><td><textarea style="display:none;"name="description" cols="40" rows="10" required id="id_description">{{ bugDetail.description }}</textarea></td></tr>
-
+        <div id="div_id_title" class="form-group"> 
+            <label for="id_title" class="col-form-label  requiredField">
+                <span class="asteriskField"></span> 
+            </label> 
+            <div class=""> 
+                <input type="hidden" value="{{ bugDetail.title }}" name="title" maxlength="100" class="textinput textInput form-control" required id="id_title" /> 
+            </div> 
+        </div> 
+        <div id="div_id_description" class="form-group" style="display:none;"> 
+            <label for="id_description" class="col-form-label  requiredField">
+                Description
+                <span class="asteriskField">*</span>
+            </label> 
+            <div class=""> 
+                <textarea name="description" cols="40" rows="10" class="textarea form-control" required id="id_description">{{ bugDetail.description }}</textarea> 
+            </div> 
+        </div> 
+        <div id="div_id_status" class="form-group" style="display:none;"> 
+            <label for="id_status" class="col-form-label  requiredField">
+                Status
+                <span class="asteriskField">*</span> 
+            </label> 
+            <div class=""> 
+                <select name="status" class="select form-control" id="id_status"> 
+                    <option value="Todo">
+                        Todo
+                    </option>
+                    <option value="Doing">
+                        Doing
+                    </option>
+                    <option value="Done">
+                        Done
+                    </option>
+                </select> 
+            </div> 
+        </div>
         <a href="{% url 'home' %}" role="button" class="btn btn-danger">
             No, return to home!
         </a>

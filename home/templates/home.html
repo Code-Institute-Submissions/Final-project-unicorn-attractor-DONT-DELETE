@@ -162,13 +162,16 @@
             </p>
             <hr>
             <div class="row mb-2">
-                {% for feature in features %}
+                {% for feature in features|dictsortreversed:"price" %}
                     <div class="col-md-4 display-wrapper">
                         <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
                             <div class="card-body d-flex flex-column align-items-start">
                                 <h5 class="post-title">
                                    {{ feature.title }}
                                 </h5>
+                                  <div class="mb-1 text-muted post-date">
+                                    £{{ feature.price }}
+                                </div>
                                 <p class="card-text mb-auto">
                                     {{ feature.description|truncatechars:50 }}
                                 </p>

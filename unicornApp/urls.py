@@ -25,6 +25,8 @@ from cart import urls as cart_urls
 from checkout import urls as checkout_urls
 from django.views import static
 from .settings import MEDIA_ROOT
+from django.views.static import serve
+
 
 urlpatterns = [
     url('admin/', admin.site.urls),

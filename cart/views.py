@@ -4,7 +4,6 @@ def view_cart(request):
     """
     View all items in your cart
     """
-
     return render(request, "cart.html")
 
 def add_to_cart(request, id):

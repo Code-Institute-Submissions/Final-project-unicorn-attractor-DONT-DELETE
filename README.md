@@ -75,8 +75,9 @@ How does Developers work :
 
 2. Webpage scenario testing was carried out on the login page, register page, bug and feature adding tested making sure the user was alerted if an input had been left blank or incorrectly filled in.
 
+3. Developers code was tested using the builtin program called TestCase which is provided by Django. TestCase files where created within directories which are under the names of tests.py so django can find these files and run the tests through the command line. TestCase can be used to test forms validation, views that been created and also models for editing data and creating data.
 
 
 ## Deployment
 
-My webpage is deployed through Heroku. I created a Heroku app to which I created a Github repository thorough the command line. i added a requirements text file and a Procfile so Heroku knows what to install and what program my code is running. Once created I added all my code to Heroku and committed my work ready to be pushed to the Heroku branch. 
+My webpage is deployed through Heroku. I created a Heroku app and used there Postgres database to which I created a Github repository thorough the command line. I added a requirements text file and a Procfile so Heroku knows what to install and what program my code is running. Once created I added all my code to Heroku and committed my work ready to be pushed to the Heroku branch. 

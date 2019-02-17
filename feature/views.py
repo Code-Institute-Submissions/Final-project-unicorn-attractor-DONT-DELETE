@@ -8,6 +8,7 @@ from .forms import New_posts, Comment_form, FeatureComment
 def preview_feature(request, id):
 
     feature = get_object_or_404(Feature, pk=id)
+    
     if request.user != feature.author: 
         feature.views += 1
         feature.save()

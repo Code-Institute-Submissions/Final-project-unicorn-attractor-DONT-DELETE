@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^password_reset/', include(url_reset)),
 
 ]
-  
-  
- 
+
+
+

@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, UpdateImage, UpdateProfile
 from bug.models import Bug
@@ -52,14 +51,13 @@ def profile(request):
             if bugs.status != "Done":
                 bugStatus.append(bugs)
 
-        print(ProfileBug)
-                
-    context = {
-        "User_profile": User_profile,
-        "User_image": User_image,
-        "AssignedBug": bugStatus,
-        "ProfileBug": ProfileBug,
-        "ProfileFeature": ProfileFeature,
-    }
+
+        context = {
+            "User_profile": User_profile,
+            "User_image": User_image,
+            "AssignedBug": bugStatus,
+            "ProfileBug": ProfileBug,
+            "ProfileFeature": ProfileFeature,
+        }
 
     return render(request, "profile.html", context)

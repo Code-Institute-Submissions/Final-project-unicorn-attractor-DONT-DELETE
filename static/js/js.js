@@ -4,7 +4,6 @@ $(document).ready(function () {
     });
 }); 
 
-
 // QUICK SEARCH ON HOMEPAGE
 
 let searchBar = document.getElementById("searchValue");

@@ -16,16 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
-from home.views import index, home
 from users import urls as users_urls
 from bug import urls as bug_urls
 from feature import urls as feature_urls
 from home import urls as home_urls
 from cart import urls as cart_urls
 from checkout import urls as checkout_urls
-from django.views import static
-from .settings import MEDIA_ROOT
-from django.views.static import serve
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -36,7 +33,6 @@ urlpatterns = [
     url(r'feature/', include(feature_urls)),
     url(r'cart/', include(cart_urls)),
     url(r'checkout/', include(checkout_urls)),
-    url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
-] 
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

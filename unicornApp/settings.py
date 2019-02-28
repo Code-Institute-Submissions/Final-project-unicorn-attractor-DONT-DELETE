@@ -26,8 +26,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "127.0.0.1", "https://www.unicornapp-milestone-project.herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "unicornapp-milestone-project.herokuapp.com"]
 
 
 # Application definition

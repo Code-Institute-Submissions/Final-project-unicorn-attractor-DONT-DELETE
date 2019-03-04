@@ -35,13 +35,15 @@
                     <fieldset class="paymentform">
                         <legend>Payment form</legend>
                         {{ payment_form|crispy }}
-                        {% csrf_token %} 
-                        <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+                        {% csrf_token %}
+
+                        <input class="btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+
                     </fieldset>
                 </div>
             </div>
-            
-            
+
+
         </form>
 
     </div>

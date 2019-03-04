@@ -9,7 +9,8 @@ from feature.models import Feature
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
- 
+
+
 @login_required()
 def checkout(request):
     
@@ -71,6 +72,5 @@ def checkout(request):
         'order_form' : OrderForm(),
         'publishable' : settings.STRIPE_PUBLISHABLE,
     }
-
 
     return render(request, "checkout.html", context)

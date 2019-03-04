@@ -1,4 +1,7 @@
 env.py
 *.sqlite3
-__pycache__env.py
+__pycache__/
+env/
+.DS_store
+.idea/
  

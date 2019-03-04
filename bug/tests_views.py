@@ -5,7 +5,6 @@ from django.shortcuts import get_object_or_404
 from .models import Bug
 
 
-# Create your tests here.
 class TestBugViews(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='test',

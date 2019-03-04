@@ -1,13 +1,8 @@
 {% extends "base.html" %}
-
 {% load crispy_forms_tags %}
 
-{% block title %}
-Bug Preview
-{% endblock %}
-
+{% block title %}Bug Preview{% endblock %}
 {% block content %}
-
 <div class="container">
     <div class="card mt-3">
         <div class="card-header">
@@ -35,59 +30,56 @@ Bug Preview
             <span class="mt-2">Current Status : {{ bug.status }}</span>
             <br>
             {% if bug.assigned != "" %}
-                <span class="mt-2">Assigned to : {{ bug.assigned }}</span>
+            <span class="mt-2">Assigned to : {{ bug.assigned }}</span>
             {% endif %}
         </div>
         <div class="card-body">
             <p class="card-text">{{ bug.description }}</p>
         </div>
         <div class="card-footer text-muted">
-           <button type="button" id="profile-edit" class="btn btn-primary btn-sm"
-                        data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
+            <button type="button" id="profile-edit" class="btn btn-primary btn-sm"
+                    data-toggle="collapse" data-target="#collapseComment" aria-expanded="false"
+                    aria-controls="collapseComment">
                 <i class="fa fa-reply" aria-hidden="true"></i>
                 Leave a Comment
             </button>
             <a href="{% url 'upvote_bug' bug.id %}" class="btn btn-sm btn-success">
                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                 Upvote Bug
-                </a>
+            </a>
         </div>
     </div>
-
-    {% comment %} <------------- BUG COMMENTS ---------------> {% endcomment %}
-
+    #BUG COMMENTS
     <div class="mt-3">
         <form method="POST" id="collapseComment" class="mt-3 profile-form collapse">
-            {% csrf_token %} 
+            {% csrf_token %}
 
             {{ comment|crispy }}
-        
+
             <button type="submit" class="btn btn-sm btn-primary">Add comment</button>
         </form>
     </div>
-
     <h4 class="mt-3">Comments</h4>
     <table class="table">
         <thead>
-            <tr>
-                <th scope="col">Author</th>
-                <th style="width: 85%;"scope="col">Comment</th>
-            </tr>
+        <tr>
+            <th scope="col">Author</th>
+            <th style="width: 85%;" scope="col">Comment</th>
+        </tr>
         </thead>
         <tbody>
-            {% for comment in comments %}
-                <tr>
-                    <th scope="row">
-                        {{ comment.author }}
-                    </th>
-                    <td>
-                        {{ comment }}
-                    </td>
-                </tr>
-            {% endfor%}
+        {% for comment in comments %}
+        <tr>
+            <th scope="row">
+                {{ comment.author }}
+            </th>
+            <td>
+                {{ comment }}
+            </td>
+        </tr>
+        {% endfor%}
         </tbody>
     </table>
 </div>
-
 {% endblock %}
 

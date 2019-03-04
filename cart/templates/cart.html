@@ -1,67 +1,64 @@
 {% extends 'base.html' %}
 
-{% block title%}
-    Cart
-{% endblock %}
-
+{% block title%}Cart{% endblock %}
 {% block content %}
 <div class="container mt-3">
     <h4>Your Cart</h4>
     <div class="cart-table">
         <table class="table">
             <thead>
-                <tr>
-                    <th style="width: 10%;"scope="col"></th>
-                    <th scope="col">Product</th>
-                    <th scope="col"></th>
-                    <th scope="col">Price</th>
-                    <th style="width: 10%;" scope="col">Total</th>
-                </tr>
+            <tr>
+                <th style="width: 10%;" scope="col"></th>
+                <th scope="col">Product</th>
+                <th scope="col"></th>
+                <th scope="col">Price</th>
+                <th style="width: 10%;" scope="col">Total</th>
+            </tr>
             </thead>
             <tbody>
-                {% for item in cart_items %}
-                    <tr>
-                        <th scope="row"> 
-                            <a href="{% url 'delete_cart' item.feature.id %}">
-                                <button type="button" class="close" aria-label="Close">
+            {% for item in cart_items %}
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'delete_cart' item.feature.id %}">
+                        <button type="button" class="close" aria-label="Close">
                                     <span aria-hidden="true">
                                         &times;
                                     </span>
-                                </button>
-                            </a>
-                        </th>
-                        <td>
-                            {{ item.feature }}
-                        </td>
-                        <td></td>
-                        <td>
-                            {{ item.feature.price }}
-                        </td>
-                        <td></td>
-                    </tr>
-                {% endfor %}
-                <tr>
-                    <th scope="row">
-                        {% if total == 0 %}
-                        <td>
-                            Nothing in your basket!
-                        </td>
-                        {% else %}
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            £{{ total }}
-                        {% endif %}
-                        </td>
-                    </th> 
-                </tr>
+                        </button>
+                    </a>
+                </th>
+                <td>
+                    {{ item.feature }}
+                </td>
+                <td></td>
+                <td>
+                    {{ item.feature.price }}
+                </td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th scope="row">
+                    {% if total == 0 %}
+                <td>
+                    Nothing in your basket!
+                </td>
+                {% else %}
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    £{{ total }}
+                    {% endif %}
+                </td>
+                </th>
+            </tr>
             </tbody>
         </table>
         {% if total == 0 %}
-            <a href="{% url 'checkout' %}" class="btn btn-secondary disabled" role="button">Checkout</a>
+        <a href="{% url 'checkout' %}" class="btn btn-secondary disabled" role="button">Checkout</a>
         {% else %}
-            <a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
+        <a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
         {% endif %}
 
     </div>

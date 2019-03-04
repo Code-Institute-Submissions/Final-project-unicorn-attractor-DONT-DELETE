@@ -3,7 +3,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-
 class Feature(models.Model):
     title = models.CharField(max_length=100, default="")
     description = models.TextField()
@@ -17,6 +16,7 @@ class Feature(models.Model):
     def __str__(self):
         return self.title
 
+
 class FeatureComment(models.Model):
     comment = models.TextField()
     author = models.ForeignKey(User)
@@ -24,4 +24,3 @@ class FeatureComment(models.Model):
 
     def __str__(self):
         return self.comment
-

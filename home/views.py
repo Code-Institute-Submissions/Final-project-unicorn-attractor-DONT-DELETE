@@ -1,22 +1,19 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from bug.models import Bug
 from feature.models import Feature
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from django.db.models import Max, Count
 
-# <-------------- LANDING PAGE ----------->
-def index(request):    
 
+# LANDING PAGE
+def index(request):
     return render(request, "index.html")
 
 
-# <--------------- HOMEPAGE ONCE LOGGED IN --------->
+# HOMEPAGE ONCE LOGGED IN
 @login_required
 def home(request):
-
     features = Feature.objects.all()
     bugs = Bug.objects.all()
 
@@ -28,17 +25,17 @@ def home(request):
 
 
 def statistics(request):
-
     # Top Viewed bugs/features for table
 
     top_viewed_bug = Bug.objects.all().order_by('-views')[0:5]
     top_viewed_feature = Feature.objects.all().order_by('-views')[0:5]
-    
+
     results = {
         'topBug': top_viewed_bug,
         'topFeature': top_viewed_feature,
     }
     return render(request, "stats.html", results)
+
 
 def data_for_graphs(request):
     """
@@ -54,14 +51,12 @@ def data_for_graphs(request):
     doing = Bug.objects.filter(status='Doing').count()
     done = Bug.objects.filter(status='Done').count()
 
-    
     bugStats = [todo, doing, done]
     totalResults = [total_features, total_bugs, total_users]
-    
+
     data = {
         'totals': totalResults,
         'bugStats': bugStats,
     }
 
     return JsonResponse(data, safe=False)
-

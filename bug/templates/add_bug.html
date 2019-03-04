@@ -1,43 +1,44 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
 
 {% block title %}Add Bug{% endblock %}
-
 {% block content %}
 <div class="container text-center add-bug">
     <form class="add-bug-form" method="POST">
         <h2>Add {{ bugDetail.title }}</h2>
         <hr>
-        <p class="lead text-muted"> 
-            Are you sure you want to add this bug? If you process this bug, it will be added to your profile where once completed you can change the status?
+        <p class="lead text-muted">
+            Are you sure you want to add this bug? If you process this bug, it will be added to your profile where once
+            completed you can change the status?
         </p>
         {% csrf_token %}
-        
-        <div id="div_id_title" class="form-group"> 
+
+        <div id="div_id_title" class="form-group">
             <label for="id_title" class="col-form-label  requiredField">
-                <span class="asteriskField"></span> 
-            </label> 
-            <div class=""> 
-                <input type="hidden" value="{{ bugDetail.title }}" name="title" maxlength="100" class="textinput textInput form-control" required id="id_title" /> 
-            </div> 
-        </div> 
-        <div id="div_id_description" class="form-group" style="display:none;"> 
+                <span class="asteriskField"></span>
+            </label>
+            <div class="">
+                <input type="hidden" value="{{ bugDetail.title }}" name="title" maxlength="100"
+                       class="textinput textInput form-control" required id="id_title"/>
+            </div>
+        </div>
+        <div id="div_id_description" class="form-group" style="display:none;">
             <label for="id_description" class="col-form-label  requiredField">
                 Description
                 <span class="asteriskField">*</span>
-            </label> 
-            <div class=""> 
-                <textarea name="description" cols="40" rows="10" class="textarea form-control" required id="id_description">{{ bugDetail.description }}</textarea> 
-            </div> 
-        </div> 
-        <div id="div_id_status" class="form-group" style="display:none;"> 
+            </label>
+            <div class="">
+                <textarea name="description" cols="40" rows="10" class="textarea form-control" required
+                          id="id_description">{{ bugDetail.description }}</textarea>
+            </div>
+        </div>
+        <div id="div_id_status" class="form-group" style="display:none;">
             <label for="id_status" class="col-form-label  requiredField">
                 Status
-                <span class="asteriskField">*</span> 
-            </label> 
-            <div class=""> 
-                <select name="status" class="select form-control" id="id_status"> 
+                <span class="asteriskField">*</span>
+            </label>
+            <div class="">
+                <select name="status" class="select form-control" id="id_status">
                     <option value="Todo">
                         Todo
                     </option>
@@ -47,15 +48,15 @@
                     <option value="Done">
                         Done
                     </option>
-                </select> 
-            </div> 
+                </select>
+            </div>
         </div>
         <a href="{% url 'home' %}" role="button" class="btn btn-danger">
             No, return to home!
         </a>
         <button type="submit" class="btn btn-success">
-        Yes, Add to profile! </button>
+            Yes, Add to profile!
+        </button>
     </form>
 </div>
-
 {% endblock %}

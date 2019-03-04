@@ -1,10 +1,12 @@
-from django.shortcuts import render, reverse, redirect, get_object_or_404
+from django.shortcuts import render, reverse, redirect
+
 
 def view_cart(request):
     """
     View all items in your cart
     """
     return render(request, "cart.html")
+
 
 def add_to_cart(request, id):
     """ 
@@ -17,11 +19,12 @@ def add_to_cart(request, id):
 
     return redirect(reverse('home'))
 
+
 def delete_cart(request, id):
     cart = request.session.get('cart', {})
     if id in cart:
         cart.pop(id)
-        
+
     request.session['cart'] = cart
 
     return redirect(reverse(view_cart))

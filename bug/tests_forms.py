@@ -1,6 +1,7 @@
 from django.test import TestCase
 from .forms import New_posts, Comment_form
 
+
 # Create your tests here.
 
 class TestBugForm(TestCase):
@@ -11,6 +12,7 @@ class TestBugForm(TestCase):
     def test_bug_missing_name_or_description(self):
         form = New_posts({'description': 'bugs description for test'})
         self.assertFalse(form.is_valid())
+
 
 class TestBugCommentForm(TestCase):
     def test_bug_comment_form(self):

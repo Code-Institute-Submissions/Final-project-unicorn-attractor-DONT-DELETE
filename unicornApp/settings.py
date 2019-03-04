@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", 'unicornapp-milestone-project.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -80,11 +79,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'unicornApp.wsgi.application'
 
-
 # Database
 if 'DATABASE_URL' in os.environ:
-    DATABASES = { 'default': dj_database_url.parse(
-        os.environ.get('DATABASE_URL')) }
+    DATABASES = {'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL'))}
 
 else:
     print('Database URL not found. Using SQlite instead')
@@ -113,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -127,14 +124,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "static"),
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -144,7 +140,6 @@ LOGIN_REDIRECT_URL = 'home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "photos")
 MEDIA_URL = '/photos/'
-
 
 STRIPE_PUBLISHABLE = os.getenv("STRIPE_PUBLISHABLE")
 STRIPE_SECRET = os.getenv("STRIPE_SECRET")

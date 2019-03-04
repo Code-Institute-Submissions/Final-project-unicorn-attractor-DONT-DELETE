@@ -1,10 +1,6 @@
 from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
-from . import views
-from . import urls
-from .models import Order
 
 
 class TestCartViews(TestCase):
@@ -27,6 +23,7 @@ class TestCartViews(TestCase):
                     'date': '2018-02-02'
                 }
             )
+
         self.assertEqual(order.full_name, 'Test_name')
         self.assertEqual(order.phone_number, '01234 567899')
         self.assertEqual(order.street_address1, 'somewhere nice')

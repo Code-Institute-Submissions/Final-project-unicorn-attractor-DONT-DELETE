@@ -1,18 +1,17 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib import auth, messages
+from django.contrib import messages
 from .models import Feature
 from .forms import New_posts, Comment_form, FeatureComment
 
 
 def preview_feature(request, id):
-
     feature = get_object_or_404(Feature, pk=id)
-    
-    if request.user != feature.author: 
+
+    if request.user != feature.author:
         feature.views += 1
         feature.save()
-        
+
     all_comments = FeatureComment.objects.filter(feature=feature)
 
     if request.method == "POST":
@@ -77,11 +76,12 @@ def edit_feature(request, id):
             return redirect(preview_feature, feature.id)
     else:
         form = New_posts(instance=feature)
-        
+
         context = {
             "form": form,
         }
     return render(request, "edit_feature.html", context)
+
 
 @login_required
 def delete_feature(request, id):

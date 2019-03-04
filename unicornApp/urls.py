@@ -24,15 +24,12 @@ from cart import urls as cart_urls
 from checkout import urls as checkout_urls
 from django.conf.urls.static import static
 
-
 urlpatterns = [
-    url('admin/', admin.site.urls),
-    url(r'^', include(home_urls)),
-    url(r'users/', include(users_urls)),
-    url(r'bug/', include(bug_urls)),
-    url(r'feature/', include(feature_urls)),
-    url(r'cart/', include(cart_urls)),
-    url(r'checkout/', include(checkout_urls)),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-
+                  url('admin/', admin.site.urls),
+                  url(r'^', include(home_urls)),
+                  url(r'users/', include(users_urls)),
+                  url(r'bug/', include(bug_urls)),
+                  url(r'feature/', include(feature_urls)),
+                  url(r'cart/', include(cart_urls)),
+                  url(r'checkout/', include(checkout_urls)),
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

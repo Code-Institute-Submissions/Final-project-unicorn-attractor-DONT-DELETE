@@ -1,42 +1,39 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
 
 {% block title %}Create a Bug{% endblock %}
-
 {% block content %}
 <div class="container">
-
     <h4>Create a Bug</h4>
-
     <form method="POST">
-        {% csrf_token %} 
-        
-        <div id="div_id_title" class="form-group"> 
+        {% csrf_token %}
+        <div id="div_id_title" class="form-group">
             <label for="id_title" class="col-form-label  requiredField">
                 Title
-                <span class="asteriskField">*</span> 
-            </label> 
-            <div class=""> 
-                <input type="text" name="title" maxlength="100" class="textinput textInput form-control" required id="id_title" /> 
-            </div> 
-        </div> 
-        <div id="div_id_description" class="form-group"> 
+                <span class="asteriskField">*</span>
+            </label>
+            <div class="">
+                <input type="text" name="title" maxlength="100" class="textinput textInput form-control" required
+                       id="id_title"/>
+            </div>
+        </div>
+        <div id="div_id_description" class="form-group">
             <label for="id_description" class="col-form-label  requiredField">
                 Description
                 <span class="asteriskField">*</span>
-            </label> 
-            <div class=""> 
-                <textarea name="description" cols="40" rows="10" class="textarea form-control" required id="id_description"></textarea> 
-            </div> 
-        </div> 
-        <div id="div_id_status" class="form-group" style="display:none;"> 
+            </label>
+            <div class="">
+                <textarea name="description" cols="40" rows="10" class="textarea form-control" required
+                          id="id_description"></textarea>
+            </div>
+        </div>
+        <div id="div_id_status" class="form-group" style="display:none;">
             <label for="id_status" class="col-form-label  requiredField">
                 Status
-                <span class="asteriskField">*</span> 
-            </label> 
-            <div class=""> 
-                <select name="status" class="select form-control" id="id_status"> 
+                <span class="asteriskField">*</span>
+            </label>
+            <div class="">
+                <select name="status" class="select form-control" id="id_status">
                     <option value="Todo">
                         Todo
                     </option>
@@ -46,12 +43,10 @@
                     <option value="Done">
                         Done
                     </option>
-                </select> 
-            </div> 
+                </select>
+            </div>
         </div>
-
         <button type="submit" class="btn btn-primary">Create Bug</button>
     </form>
 </div>
-
 {% endblock %}

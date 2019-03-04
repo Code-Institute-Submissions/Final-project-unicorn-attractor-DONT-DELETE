@@ -9,4 +9,3 @@ urlpatterns = [
     url(r'upvote_feature/(?P<id>\d+)/', upvote_feature, name="upvote_feature"),
 
 ]
-

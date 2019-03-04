@@ -5,10 +5,10 @@ from .forms import RegisterForm, UpdateImage, UpdateProfile
 from bug.models import Bug
 from feature.models import Feature
 
-# <---------- REGISTER FORM  ---------->
+
+# REGISTER FORM
 
 def register(request):
-
     if request.method == "POST":
         form = RegisterForm(request.POST)
 
@@ -19,8 +19,8 @@ def register(request):
             return redirect(reverse("login"))
     else:
         form = RegisterForm()
-    
-    return render(request, "register.html", {'form': form })
+
+    return render(request, "register.html", {'form': form})
 
 
 @login_required
@@ -28,8 +28,8 @@ def profile(request):
     if request.method == "POST":
         User_profile = UpdateProfile(request.POST, instance=request.user)
         User_image = UpdateImage(request.POST,
-                                  request.FILES,
-                                  instance=request.user.profile)
+                                 request.FILES,
+                                 instance=request.user.profile)
 
         if User_profile.is_valid() and User_image.is_valid():
             User_image.save()
@@ -44,13 +44,12 @@ def profile(request):
         ProfileBug = Bug.objects.filter(author=request.user)
         BugsAssigned = Bug.objects.filter(assigned=request.user)
         ProfileFeature = Feature.objects.filter(author=request.user)
-    
+
         bugStatus = []
 
         for bugs in BugsAssigned:
             if bugs.status != "Done":
                 bugStatus.append(bugs)
-
 
         context = {
             "User_profile": User_profile,

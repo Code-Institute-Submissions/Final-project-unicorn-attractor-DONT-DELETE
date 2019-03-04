@@ -1,8 +1,7 @@
 from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
-from . import views
-from . import urls
+
 
 # Create your tests here.
 
@@ -10,9 +9,9 @@ class TestHomeViews(TestCase):
     def setUp(self):
         self.c = Client()
         self.user = User.objects.create_user(username='test',
-                                              password='test_password')
+                                             password='test_password')
         self.c.login(username='test', password='test_password')
-    
+
     def test_page_returns_indexpage(self):
         response = self.c.get('/')
         self.assertEqual(response.status_code, 200)

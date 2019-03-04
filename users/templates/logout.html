@@ -1,19 +1,16 @@
 {% extends "base.html" %}
-
 {% load crispy_forms_tags %}
-
 {% block content %}
 <div class="main-display">
     <div class="container login-register">
         <p> You were successfully logged out!</p>
         <div>
-        <a href="{% url 'login' %}">
-            <button type="button" class="btn btn-primary">
-                Login
-            </button>
-        </a>
+            <a href="{% url 'login' %}">
+                <button type="button" class="btn btn-primary">
+                    Login
+                </button>
+            </a>
+        </div>
     </div>
 </div>
-
-
 {% endblock %}

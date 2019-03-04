@@ -2,8 +2,6 @@ from django.test import TestCase
 from .forms import New_posts, Comment_form
 
 
-# Create your tests here.
-
 class TestBugForm(TestCase):
     def test_bug_has_name_description_status(self):
         form = New_posts({'title': 'bugtest', 'description': 'bugs description for test', 'status': 'Todo'})

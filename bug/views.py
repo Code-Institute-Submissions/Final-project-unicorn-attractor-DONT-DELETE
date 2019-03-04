@@ -33,7 +33,7 @@ def preview_bug(request, id):
     return render(request, "preview_bug.html", context)
 
 
-def upvote_bug(request, id):
+def upvote_bug(id):
     bug = get_object_or_404(Bug, pk=id)
     bug.upvotes += 1
     bug.save()

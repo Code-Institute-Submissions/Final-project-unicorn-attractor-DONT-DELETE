@@ -3,8 +3,6 @@ from django.test.client import Client
 from django.contrib.auth.models import User
 
 
-# Create your tests here.
-
 class TestHomeViews(TestCase):
     def setUp(self):
         self.c = Client()

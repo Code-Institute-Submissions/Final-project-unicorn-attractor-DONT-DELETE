@@ -7,7 +7,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('bug', '0007_bug_assigned'),
     ]
@@ -17,7 +16,9 @@ class Migration(migrations.Migration):
             name='BugStatus',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.CharField(choices=[('Todo', 'To do'), ('Doing', 'Doing'), ('Done', 'Done')], default='Todo', max_length=10)),
+                ('status',
+                 models.CharField(choices=[('Todo', 'To do'), ('Doing', 'Doing'), ('Done', 'Done')], default='Todo',
+                                  max_length=10)),
                 ('bug', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bug.Bug')),
             ],
         ),

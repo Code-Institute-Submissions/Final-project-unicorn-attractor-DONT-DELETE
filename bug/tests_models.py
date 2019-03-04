@@ -1,8 +1,6 @@
 from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
-from django.utils import timezone
-from django.shortcuts import get_object_or_404
 from .models import Bug
 
 

@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('bug', '0005_auto_20181221_2308'),
     ]
@@ -15,6 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='bug',
             name='status',
-            field=models.CharField(choices=[('Todo', 'To do'), ('Doing', 'Doing'), ('Done', 'Done')], default='Todo', max_length=10),
+            field=models.CharField(choices=[('Todo', 'To do'), ('Doing', 'Doing'), ('Done', 'Done')], default='Todo',
+                                   max_length=10),
         ),
     ]

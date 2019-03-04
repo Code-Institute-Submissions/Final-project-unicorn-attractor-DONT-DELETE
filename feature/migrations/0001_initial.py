@@ -9,7 +9,6 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -26,7 +25,8 @@ class Migration(migrations.Migration):
                 ('created_date', models.DateTimeField(default=django.utils.timezone.now)),
                 ('views', models.IntegerField(default=0)),
                 ('price', models.DecimalField(decimal_places=2, default=2.99, max_digits=6)),
-                ('subject', models.CharField(choices=[('bug', 'Bug'), ('feature', 'Feature')], default='bug', max_length=10)),
+                ('subject',
+                 models.CharField(choices=[('bug', 'Bug'), ('feature', 'Feature')], default='bug', max_length=10)),
                 ('comment', models.TextField(default='')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],

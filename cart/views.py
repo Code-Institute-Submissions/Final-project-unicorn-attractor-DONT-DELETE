@@ -2,16 +2,10 @@ from django.shortcuts import render, reverse, redirect
 
 
 def view_cart(request):
-    """
-    View all items in your cart
-    """
     return render(request, "cart.html")
 
 
 def add_to_cart(request, id):
-    """ 
-    Add a feature to your shopping cart
-    """
     quantity = 1
     cart = request.session.get('cart', {})
     cart[id] = cart.get(id, quantity)

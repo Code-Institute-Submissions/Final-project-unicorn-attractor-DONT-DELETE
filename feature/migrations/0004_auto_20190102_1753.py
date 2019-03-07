@@ -18,6 +18,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='feature',
             name='price',
-            field=models.DecimalField(decimal_places=2, default=1.99, max_digits=6),
+            field=models.DecimalField(decimal_places=2,
+                                      default=1.99,
+                                      max_digits=6),
         ),
     ]

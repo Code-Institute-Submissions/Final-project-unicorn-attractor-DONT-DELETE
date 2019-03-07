@@ -7,14 +7,17 @@ from .forms import MakePaymentForm, OrderForm
 class TestCartViews(TestCase):
     def setUp(self):
         self.c = Client()
-        self.user = User.objects.create_user(username='test',
-                                             password='test_password')
-        self.c.login(username='test', password='test_password')
+        self.user = User.objects.create_user(
+            username='test',
+            password='test_password')
+        self.c.login(username='test',
+                     password='test_password')
 
     def test_checkout_form_is_correct(self):
         form = MakePaymentForm(
             {
-                'credit_card_number': '4242424242424242',  # Visa card supplied by stripe
+                # Visa card supplied by stripe
+                'credit_card_number': '4242424242424242',
                 'expiry_month': 5,
                 'expiry_year': 2020,
                 'cvv': 123,
@@ -26,7 +29,8 @@ class TestCartViews(TestCase):
     def test_checkout_form_missing_values(self):
         form = MakePaymentForm(
             {
-                'credit_card_number': '4242424242424242',  # Visa card supplied by stripe
+                # Visa card supplied by stripe
+                'credit_card_number': '4242424242424242',
                 'expiry_month': 5,
                 'expiry_year': 2020,
                 'cvv': 123,

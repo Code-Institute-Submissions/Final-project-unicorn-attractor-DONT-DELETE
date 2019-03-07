@@ -18,7 +18,8 @@ class TestUserViews(TestCase):
         self.assertTemplateUsed(response, 'login.html')
 
     def test_get_users_profile_page(self):
-        user = User.objects.create_user(username='test', password='test_password')
+        user = User.objects.create_user(username='test',
+                                        password='test_password')
         self.c.login(username='test', password='test_password')
         response = self.c.get('/users/profile/')
         self.assertEqual(response.status_code, 200)

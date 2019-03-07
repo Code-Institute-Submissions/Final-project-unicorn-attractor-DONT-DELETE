@@ -17,9 +17,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BugComment',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('comment', models.TextField()),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.RemoveField(
@@ -34,6 +39,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='bugcomment',
             name='bug',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bug.Bug'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to='bug.Bug'),
         ),
     ]

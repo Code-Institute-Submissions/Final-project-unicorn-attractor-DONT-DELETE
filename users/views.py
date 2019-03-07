@@ -15,7 +15,9 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get("username")
-            messages.success(request, "Your account has been created, you can now login! ")
+            messages.success(request,
+                             "Your account has been created,"
+                             " you can now login! ")
             return redirect(reverse("login"))
     else:
         form = RegisterForm()
@@ -26,7 +28,8 @@ def register(request):
 @login_required
 def profile(request):
     if request.method == "POST":
-        User_profile = UpdateProfile(request.POST, instance=request.user)
+        User_profile = UpdateProfile(request.POST,
+                                     instance=request.user)
         User_image = UpdateImage(request.POST,
                                  request.FILES,
                                  instance=request.user.profile)
@@ -34,7 +37,8 @@ def profile(request):
         if User_profile.is_valid() and User_image.is_valid():
             User_image.save()
             User_profile.save()
-            messages.success(request, "Your account has been updated!")
+            messages.success(request,
+                             "Your account has been updated!")
             return redirect("profile")
     else:
 

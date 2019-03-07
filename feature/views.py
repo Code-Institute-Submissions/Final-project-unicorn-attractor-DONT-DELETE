@@ -12,7 +12,8 @@ def preview_feature(request, id):
         feature.views += 1
         feature.save()
 
-    all_comments = FeatureComment.objects.filter(feature=feature)
+    all_comments = FeatureComment.objects.filter(
+        feature=feature)
 
     if request.method == "POST":
         comment = Comment_form(request.POST)
@@ -52,7 +53,8 @@ def create_feature(request):
             feature = form.save(commit=False)
             feature.author = request.user
             feature.save()
-            messages.success(request, "Your post has been created!")
+            messages.success(request,
+                             "Your post has been created!")
             return redirect(reverse("profile"))
     else:
         context = {
@@ -72,7 +74,8 @@ def edit_feature(request, id):
             feature = form.save(commit=False)
             feature.author = request.user
             feature.save()
-            messages.success(request, "Your post has been successful!")
+            messages.success(request,
+                             "Your post has been successful!")
             return redirect(preview_feature, feature.id)
     else:
         form = New_posts(instance=feature)

@@ -6,8 +6,9 @@ from django.contrib.auth.models import User
 class TestCartViews(TestCase):
     def setUp(self):
         self.c = Client()
-        self.user = User.objects.create_user(username='test',
-                                             password='test_password')
+        self.user = User.objects.create_user(
+            username='test',
+            password='test_password')
         self.c.login(username='test', password='test_password')
 
     def test_checkout_page(self):

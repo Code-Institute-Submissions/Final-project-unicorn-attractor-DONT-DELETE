@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators \
+    import login_required
 from bug.models import Bug
 from feature.models import Feature
 from django.contrib.auth.models import User
@@ -27,8 +28,10 @@ def home(request):
 def statistics(request):
     # Top Viewed bugs/features for table
 
-    top_viewed_bug = Bug.objects.all().order_by('-views')[0:5]
-    top_viewed_feature = Feature.objects.all().order_by('-views')[0:5]
+    top_viewed_bug = Bug.objects.all().order_by(
+        '-views')[0:5]
+    top_viewed_feature = Feature.objects.all().order_by(
+        '-views')[0:5]
 
     results = {
         'topBug': top_viewed_bug,
@@ -39,7 +42,8 @@ def statistics(request):
 
 def data_for_graphs():
     """
-    collect all data for graphs to display and return data as a json response for chart.js to process
+    collect all data for graphs to display,
+    return data as a json response for chart.js to process
     """
     # Total amount on of data on website.
     total_features = Feature.objects.all().count()

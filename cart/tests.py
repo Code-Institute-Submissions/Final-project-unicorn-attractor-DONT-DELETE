@@ -11,30 +11,33 @@ class TestCartViews(TestCase):
                                              password='test_password')
         self.c.login(username='test', password='test_password')
 
-        self.feature = Feature.objects.create(title='Test Feature',
-                                              description='feature testing description',
-                                              views=1,
-                                              upvotes=1,
-                                              author=self.user,
-                                              purchased=1,
-                                              price=1200,
-                                              )
+        self.feature = Feature.objects.create(
+            title='Test Feature',
+            description='feature testing description',
+            views=1,
+            upvotes=1,
+            author=self.user,
+            purchased=1,
+            price=1200,
+        )
         self.feature.save()
 
-    def test_page_returns_indexpage(self):
+    def test_page_returns_index_page(self):
         response = self.c.get('/cart/view_cart/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'cart.html')
 
     def test_cart_items_are_added(self):
-        response = self.c.get('/cart/add_to_cart/{0}'.format(self.feature.id), follow=True)
+        response = self.c.get('/cart/add_to_cart/{0}'.format(
+            self.feature.id), follow=True)
         self.assertEqual(response.status_code, 200)
         session = self.c.session
         cart = session['cart']
         self.assertEqual(cart, {'1': 1})
 
     def test_cart_item_has_been_removed(self):
-        response = self.c.get('/cart/delete_cart/{0}'.format(self.feature.id), follow=True)
+        response = self.c.get('/cart/delete_cart/{0}'.format(
+            self.feature.id), follow=True)
         self.assertEqual(response.status_code, 200)
         session = self.c.session
         cart = session['cart']

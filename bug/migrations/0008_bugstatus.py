@@ -15,11 +15,19 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BugStatus',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('status',
-                 models.CharField(choices=[('Todo', 'To do'), ('Doing', 'Doing'), ('Done', 'Done')], default='Todo',
+                 models.CharField(choices=[('Todo', 'To do'),
+                                           ('Doing', 'Doing'),
+                                           ('Done', 'Done')],
+                                  default='Todo',
                                   max_length=10)),
-                ('bug', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bug.Bug')),
+                ('bug', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to='bug.Bug')),
             ],
         ),
     ]

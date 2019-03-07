@@ -14,6 +14,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='bug',
             name='status',
-            field=models.CharField(choices=[('Doing', 'Doing'), ('Done', 'Done')], default='Todo', max_length=10),
+            field=models.CharField(choices=[('Doing', 'Doing'),
+                                            ('Done', 'Done')],
+                                   default='Todo',
+                                   max_length=10),
         ),
     ]

@@ -14,11 +14,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='feature',
             name='price',
-            field=models.DecimalField(decimal_places=2, max_digits=6),
+            field=models.DecimalField(decimal_places=2,
+                                      max_digits=6),
         ),
         migrations.AlterField(
             model_name='feature',
             name='title',
-            field=models.CharField(default='', max_length=100),
+            field=models.CharField(default='',
+                                   max_length=100),
         ),
     ]

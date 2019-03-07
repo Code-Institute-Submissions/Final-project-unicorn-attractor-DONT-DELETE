@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.shortcuts import render, get_object_or_404, \
+    reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import MakePaymentForm, OrderForm
@@ -44,10 +45,12 @@ def checkout(request):
                 )
 
             except stripe.error.CardError:
-                messages.error(request, "Your card was declined!")
+                messages.error(request,
+                               "Your card was declined!")
 
             if customer.paid:
-                messages.success(request, "Your order has been completed, Thank you")
+                messages.success(request,
+                                 "Your order has been completed, Thank you")
 
                 for id, quantity in cart.items():
                     feature = get_object_or_404(Feature, pk=id)
@@ -58,10 +61,12 @@ def checkout(request):
                 return redirect(reverse("profile"))
 
             else:
-                messages.alert(request, "Unable to take payment")
+                messages.alert(request,
+                               "Unable to take payment")
         else:
             print(payment_form.errors)
-            messages.error(request, "Unable to take payment from card! ")
+            messages.error(request,
+                           "Unable to take payment from card! ")
     else:
         MakePaymentForm(),
         OrderForm()

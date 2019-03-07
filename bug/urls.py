@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from bug.views import create_bug, preview_bug, delete_bug, edit_bug, add_bug, upvote_bug
+from bug.views import create_bug, preview_bug, \
+    delete_bug, edit_bug, add_bug, upvote_bug
 
 urlpatterns = [
     url(r'create_bug/$', create_bug, name="create_bug"),

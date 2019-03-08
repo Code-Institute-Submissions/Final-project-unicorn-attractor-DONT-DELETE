@@ -48,7 +48,7 @@ def statistics(request):
     return render(request, "stats.html", results)
 
 
-def data_for_graphs():
+def data_for_graphs(request):
     """
     collect all data for graphs to display,
     return data as a json response for chart.js to process

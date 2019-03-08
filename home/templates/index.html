@@ -2,29 +2,112 @@
 
 {% block title %}Home Page{% endblock %}
 {% block content %}
-<div class="main-display">
-    <div class="main-content">
-        <h2>Welcome to Developers</h2>
-        <p class="mt-3">Developers was created to allow users to track / view bugs within a company that are then posted
-            onto a card for others to view and comment on and help you find a solution.
-            <br>
-            <br>
-            Looking for a new feature? We have a large selection available for purchasing that have been created by
-            other users.</p>
-        <ul class="navbar-nav mr-auto main-nav">
-            <li class="nav-item">
-                <a class="nav-link indexBtn" href="{% url 'login' %}">
-                    <i class="fas fa-sign-in-alt"></i>
-                    Login
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link indexBtn" href="{% url 'register' %}">
-                    <i class="far fa-registered"></i>
-                    Register
-                </a>
-            </li>
-        </ul>
+<div>
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center main-display">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 font-weight-normal">Developers</h1>
+            <h1> Bug Tracker Software</h1>
+            <p class="lead font-weight-normal">A simple, fast and scalable bug tracking software that helps you manage
+                bugs easily and deliver
+                great products on time.</p>
+        </div>
+        <div class="bug-wrapper">
+            <div class="product-device product-device-1 d-none d-md-block main-images"><i class="fas fa-bug"></i></div>
+            <div class="product-device product-device-2 d-none d-md-block main-images"><i class="fas fa-bug"></i></div>
+            <div class="product-device product-device-3 d-none d-md-block main-images"><i class="fas fa-bug"></i></div>
+            <div class="product-device product-device-4 d-none d-md-block main-images"><i class="fas fa-bug"></i></div>
+            <div class="product-device product-device-5 d-none d-md-block main-images"><i class="fas fa-bug"></i></div>
+        </div>
+    </div>
+    <div>
+        <div class="d-md-flex flex-md-wrap flex-lg-nowrap justify-content-center w-100 my-md-3 pl-md-3">
+            <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                <div class="my-3 py-3">
+                    <h2 class="display-5">Log and Track Bugs</h2>
+                    <p>Record bugs easily, and track them stage by stage. Focus on bugs that you have been created or
+                        see how many bugs have been logged by others, if they've been resolved or been assigned to.</p>
+                </div>
+            </div>
+            <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                <div class="my-3 p-3">
+                    <h2 class="display-5">Work together efficiently.</h2>
+                    <p class="lead">Many bugs and features being tracked online with comments with solutions to help
+                        solve them as a community</p>
+                </div>
+            </div>
+            <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                <div class="my-3 p-3">
+                    <h2 class="display-5">Features</h2>
+                    <p class="lead">Many Features have been created to help with your day to day work, Preview top
+                        features by the community and see what others are purchasing</p>
+                </div>
+                <div class="bg-dark shadow-sm mx-auto"
+            </div>
+        </div>
     </div>
 </div>
+<div class="container marketing">
+    <div class="row">
+        <div class="col-lg-4">
+            <p class="lead"><i class="fas fa-users main-icons"></i></p>
+            <h2>Users</h2>
+            <p>Here at Developers we have a large community of people all awaiting to help you solve your bugs for free.
+                Simple monitoring system to help you keep track </p>
+            <p> Currently have <strong>{{ user }} Users</strong></p>
+        </div>
+        <div class="col-lg-4">
+            <p class="lead "><i class="fas fa-bug main-icons"></i></p>
+            <h2>Bugs</h2>
+            <p>Bugs are created, tracked and fixed quickly and efficiently at Developers. Our simple status monitoring
+                system keeps your bugs managed and easy to access at all times. </p>
+            <p> Currently have <strong>{{ bug }} Bugs</strong></p>
+        </div>
+        <div class="col-lg-4">
+            <p class="lead"><i class="fas fa-laptop-code main-icons"></i></p>
+            <h2>Features</h2>
+            <p>Make your day to day stress free with our online features page, many features ready to be purchased
+                online. Checkout most popular features by our community</p>
+            <p> Currently have <strong>{{ feature }} Features</strong></p>
+        </div>
+    </div>
+</div>
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 mx-auto my-5">
+        <h2>Developers is Free !</h2>
+
+        <button type="button" class="btn btn-primary indexBtn">
+            <a class="nav-link " href="{% url 'register' %}">
+                <i class="far fa-registered"></i>
+                Register Today
+            </a>
+        </button>
+
+        <p class="mt-3">OR</p>
+
+        <button type="button" class="btn btn-primary indexBtn">
+            <a class="nav-link " href="{% url 'login' %}">
+                <i class="fas fa-sign-in-alt"></i>
+                Login
+            </a>
+        </button>
+    </div>
+</div>
+<footer class="container py-5" >
+    <div class="row">
+        <div class="col-12 col-md">
+            <p class="text-center media-icons">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></i></a>
+                <a href="https://www.instagram.com/accounts/login/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://github.com/rtreagus/Final-project-unicorn-attractor-DONT-DELETE/" target="_blank"><i class="fab fa-github-square"></i></a>
+
+            </p>
+            <p class="text-center">
+                Developers Bug Tracker | Russell Treagus
+                <small class="d-block mb-3 text-center text-muted">&copy; 2017-2019</small>
+            </p>
+        </div>
+    </div>
+</footer>
+
 {% endblock %}

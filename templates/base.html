@@ -34,6 +34,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <p class="nav-media">
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></i></a>
+                <a href="https://www.instagram.com/accounts/login/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="https://github.com/rtreagus/Final-project-unicorn-attractor-DONT-DELETE/" target="_blank"><i class="fab fa-github-square"></i></a>
+            </p>
             <ul class="navbar-nav ml-auto main-nav">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
@@ -112,6 +118,8 @@
 {% block content %}
 <!--MAIN CONTENT-->
 {% endblock %}
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>

@@ -9,7 +9,15 @@ from django.http import JsonResponse
 
 # LANDING PAGE
 def index(request):
-    return render(request, "index.html")
+    features = Feature.objects.count()
+    bugs = Bug.objects.count()
+    users = User.objects.count()
+    context = {
+        'user': users,
+        'bug': bugs,
+        'feature': features,
+    }
+    return render(request, "index.html", context)
 
 
 # HOMEPAGE ONCE LOGGED IN

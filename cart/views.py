@@ -14,7 +14,7 @@ def add_to_cart(request, id):
         request.session['cart'] = cart
         messages.success(request, "Basket Updated!")
 
-        return redirect(reverse('home'))
+    return redirect(reverse('home'))
 
 
 def delete_cart(request, id):

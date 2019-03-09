@@ -1,8 +1,8 @@
 from django.shortcuts import render, reverse, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from .models import Feature
 from .forms import New_posts, Comment_form, FeatureComment
+from django.contrib import messages
 
 
 def preview_feature(request, id):
@@ -39,7 +39,8 @@ def upvote_feature(request, id):
     feature = get_object_or_404(Feature, pk=id)
     feature.upvotes += 1
     feature.save()
-
+    messages.success(request,
+                     "Feature has been Upvoted, Thank you")
     return redirect("home")
 
 
@@ -54,7 +55,7 @@ def create_feature(request):
             feature.author = request.user
             feature.save()
             messages.success(request,
-                             "Your post has been created!")
+                             "Your Feature has been created!")
             return redirect(reverse("profile"))
     else:
         context = {
@@ -75,7 +76,7 @@ def edit_feature(request, id):
             feature.author = request.user
             feature.save()
             messages.success(request,
-                             "Your post has been successful!")
+                             "Feature has been edited successfully!")
             return redirect(preview_feature, feature.id)
     else:
         form = New_posts(instance=feature)
@@ -92,6 +93,8 @@ def delete_feature(request, id):
 
     if request.method == "POST":
         feature.delete()
+        messages.info(request,
+                      "Your Feature has been deleted!")
         return redirect(reverse("profile"))
     else:
         context = {

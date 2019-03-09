@@ -76,9 +76,9 @@
                             </h5>
                             <a href="{% url 'delete_bug' bug.id %}">
                                 <button type="button" class="close right-corner" aria-label="Close">
-                                            <span aria-hidden="true">
-                                                &times;
-                                            </span>
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
                                 </button>
                             </a>
                             <p class="card-text mb-auto post-text">
@@ -100,6 +100,8 @@
                 </div>
                 {% endfor %}
             </div>
+             {% else %}
+            <p>No bugs currently listed!</p>
             {% endif %}
             {% if ProfileFeature %}
             <h5>Features</h5>
@@ -111,9 +113,9 @@
                         <div class="card-body d-flex flex-column align-items-start">
                             <a href="{% url 'delete_feature' feature.id %}">
                                 <button type="button" class="close right-corner" aria-label="Close">
-                                                <span aria-hidden="true">
-                                                    &times;
-                                                </span>
+                                    <span aria-hidden="true">
+                                        &times;
+                                    </span>
                                 </button>
                             </a>
                             <h5 class="post-title">

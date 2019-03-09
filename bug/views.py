@@ -21,6 +21,8 @@ def preview_bug(request, id):
             comments.bug = bug
             comments.author = request.user
             comments.save()
+            messages.success(request,
+                             "Thank you for your comment!")
             return redirect(preview_bug, bug.id)
 
     else:
@@ -37,7 +39,8 @@ def upvote_bug(request, id):
     bug = get_object_or_404(Bug, pk=id)
     bug.upvotes += 1
     bug.save()
-
+    messages.success(request,
+                     "Bug has been Upvoted, Thank you!")
     return redirect("home")
 
 
@@ -50,7 +53,7 @@ def create_bug(request):
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
-            messages.success(request, "Your post has been created!")
+            messages.success(request, "Your Bug has been created!")
             return redirect(reverse("profile"))
 
     context = {
@@ -70,13 +73,14 @@ def edit_bug(request, id):
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
-            messages.success(request, "Your post has been successful!")
+            messages.success(
+                request, "Your Bug has been edited successfully!")
             return redirect('profile')
 
         elif form.is_valid():
             bug = form.save(commit=False)
             bug.save()
-            messages.success(request, "Your post has been successful!")
+            messages.success(request, "Your Bug has been successful!")
             return redirect('profile')
 
     context = {
@@ -113,6 +117,8 @@ def delete_bug(request, id):
 
     if request.method == "POST":
         bug.delete()
+        messages.success(request,
+                         "Your bug has been deleted!")
         return redirect(reverse("profile"))
     else:
         context = {

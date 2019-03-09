@@ -36,9 +36,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <p class="nav-media">
                 <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></i></a>
-                <a href="https://www.instagram.com/accounts/login/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/accounts/login/?hl=en" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
                 <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square"></i></a>
-                <a href="https://github.com/rtreagus/Final-project-unicorn-attractor-DONT-DELETE/" target="_blank"><i class="fab fa-github-square"></i></a>
+                <a href="https://github.com/rtreagus/Final-project-unicorn-attractor-DONT-DELETE/" target="_blank"><i
+                        class="fab fa-github-square"></i></a>
             </p>
             <ul class="navbar-nav ml-auto main-nav">
                 {% if user.is_authenticated %}
@@ -101,9 +103,9 @@
 </header>
 <!--FLASH MESSAGES-->
 <section>
-    <div class="container">
-        <div class="row messages-display">
-            <div class="col-md-8">
+    <div class="container mt-2">
+        <div class="row messages-display text-center">
+            <div class="col-md-8 mx-auto">
                 {% if messages %}
                 {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">

@@ -6,8 +6,6 @@ from bug.models import Bug
 from feature.models import Feature
 
 
-# REGISTER FORM
-
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)

@@ -28,10 +28,10 @@ class TestCartViews(TestCase):
         self.assertTemplateUsed(response, 'cart.html')
 
     def test_cart_items_are_added(self):
-        response = self.c.get('/cart/add_to_cart/{0}'.format(
-            self.feature.id), follow=True)
+        response = self.c.get('/cart/add_to_cart/{0}'.format(self.feature.id), follow=True)
         self.assertEqual(response.status_code, 200)
         session = self.c.session
+        print(session['cart'])
         cart = session['cart']
         self.assertEqual(cart, {'1': 1})
 

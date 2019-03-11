@@ -23,7 +23,6 @@ def delete_cart(request, id):
         cart.pop(id)
 
     request.session['cart'] = cart
-    messages.info(request,
-                  "Item removed!")
+    messages.info(request, "Item removed!")
 
     return redirect(reverse(view_cart))

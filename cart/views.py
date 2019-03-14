@@ -13,7 +13,6 @@ def add_to_cart(request, id):
         cart[id] = cart.get(id, quantity)
         request.session['cart'] = cart
         messages.success(request, "Basket Updated!")
-
     return redirect(reverse('home'))
 
 

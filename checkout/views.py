@@ -22,6 +22,7 @@ def checkout(request):
 
             order = order_form.save(commit=False)
             order.date = timezone.now()
+            order.customer_username = request.user
             order.save()
 
             cart = request.session.get('cart', {})
@@ -33,7 +34,8 @@ def checkout(request):
                 order_line_item = OrderLineItem(
                     order=order,
                     feature=feature,
-                    quantity=quantity
+                    quantity=quantity,
+                    purchased=request.user,
                 )
                 order_line_item.save()
             try:

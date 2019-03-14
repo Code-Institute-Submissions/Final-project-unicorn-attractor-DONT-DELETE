@@ -59,6 +59,10 @@
             <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
                aria-controls="pills-profile" aria-selected="false">Bugs In progress</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="pills-purchased-tab" data-toggle="pill" href="#pills-purchased" role="tab"
+               aria-controls="pills-profile" aria-selected="false">Purchased Features</a>
+        </li>
     </ul>
     <!--YOUR OWN FEATURES AND BUGS-->
     <div class="tab-content" id="pills-tabContent">
@@ -100,7 +104,7 @@
                 </div>
                 {% endfor %}
             </div>
-             {% else %}
+            {% else %}
             <p>No bugs currently listed!</p>
             {% endif %}
             {% if ProfileFeature %}
@@ -176,6 +180,38 @@
             </div>
             {% else %}
             <p>Currently no bugs in progress!</p>
+            {% endif %}
+        </div>
+        <div class="tab-pane fade" id="pills-purchased" role="tabpanel" aria-labelledby="pills-purchased-tab">
+            <h5>Purchased Features</h5>
+            <hr>
+            {% if PurchasedFeatures %}
+            <div class="row mb-2">
+                {% for feature in PurchasedFeatures %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <h5 class="post-title">
+                                {{ feature|truncatechars:28}}
+                            </h5>
+                            <p class="card-text mb-auto post-text">
+                                {{ feature.description|truncatechars:65 }}
+                            </p>
+                            <div class="mb-1 text-muted post-date">
+                                {{ feature.created_date| date:"D j Y " }}
+                            </div>
+                            <div>
+                                <a href="{% url 'preview_feature' feature.id %}" class="badge badge-info">
+                                    View Feature
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No features purchased</p>
             {% endif %}
         </div>
     </div>

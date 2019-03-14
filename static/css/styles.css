@@ -183,8 +183,11 @@ body{
     margin: 0px 20px 10px 20px;     
 }
 .main-nav li a:hover {
-    background-color: #81b7f9;;
-    border-radius: 10%;
+    background-color: #81b7f9;
+    border-radius: 10px;
+}
+.main-nav li a {
+    padding-left: 10px !important;
 }
 .table {
     width: 80%;

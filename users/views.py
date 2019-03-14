@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, UpdateImage, UpdateProfile
 from bug.models import Bug
 from feature.models import Feature
-
+from checkout.models import OrderLineItem
 
 def register(request):
     if request.method == "POST":
@@ -46,6 +46,14 @@ def profile(request):
         ProfileBug = Bug.objects.filter(author=request.user)
         BugsAssigned = Bug.objects.filter(assigned=request.user)
         ProfileFeature = Feature.objects.filter(author=request.user)
+        purchasedfeatures = OrderLineItem.objects.filter(purchased=request.user)
+
+        Purchasedfeatures = []
+
+        for feature in purchasedfeatures:
+            brought_feature = get_object_or_404(Feature, title=feature.feature)
+            Purchasedfeatures.append(brought_feature)
+        print(Purchasedfeatures)
 
         bugStatus = []
 
@@ -59,6 +67,7 @@ def profile(request):
             "AssignedBug": bugStatus,
             "ProfileBug": ProfileBug,
             "ProfileFeature": ProfileFeature,
+            "PurchasedFeatures": Purchasedfeatures,
         }
 
     return render(request, "profile.html", context)

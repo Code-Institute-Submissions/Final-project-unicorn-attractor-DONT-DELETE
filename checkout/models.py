@@ -1,5 +1,6 @@
 from django.db import models
 from feature.models import Feature
+from django.contrib.auth.models import User
 
 
 class Order(models.Model):
@@ -18,6 +19,7 @@ class Order(models.Model):
     phone_number = models.CharField(
         max_length=40, blank=False)
     date = models.DateField()
+    customer_username = models.CharField(max_length=20, null=True)
 
     def __str__(self):
         return "{0}-{1}-{2}".format(
@@ -30,6 +32,7 @@ class OrderLineItem(models.Model):
     feature = models.ForeignKey(Feature,
                                 null=False)
     quantity = models.IntegerField(blank=False)
+    purchased = models.ForeignKey(User, null=True)
 
     def __str__(self):
         return "{0} {1} @ {2}".format(

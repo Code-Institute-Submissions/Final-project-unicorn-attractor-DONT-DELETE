@@ -12,7 +12,7 @@ class TestCartViews(TestCase):
         self.c.login(username='test', password='test_password')
 
         self.feature = Feature.objects.create(title='Test Feature',
-                                              description='feature testing description',
+                                              description='feature desc',
                                               views=1,
                                               upvotes=1,
                                               author=self.user,

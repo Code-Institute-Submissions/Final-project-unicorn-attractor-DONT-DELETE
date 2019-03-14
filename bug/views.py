@@ -22,7 +22,7 @@ def preview_bug(request, id):
             comments.author = request.user
             comments.save()
             messages.success(request,
-                             "Thank you for your comment!")
+                             "Comment has been successfully added!")
             return redirect(preview_bug, bug.id)
 
     else:
@@ -64,12 +64,12 @@ def create_bug(request):
 
 @login_required
 def edit_bug(request, id):
-    edit_bug = get_object_or_404(Bug, pk=id)
+    editbug = get_object_or_404(Bug, pk=id)
 
     if request.method == "POST":
-        form = New_posts(request.POST, instance=edit_bug)
+        form = New_posts(request.POST, instance=editbug)
 
-        if form.is_valid() and edit_bug.author == request.user:
+        if form.is_valid() and editbug.author == request.user:
             bug = form.save(commit=False)
             bug.author = request.user
             bug.save()
@@ -84,7 +84,7 @@ def edit_bug(request, id):
             return redirect('profile')
 
     context = {
-        "edit_bug": edit_bug,
+        "edit_bug": editbug,
     }
 
     return render(request, "edit_bug.html", context)
@@ -92,10 +92,10 @@ def edit_bug(request, id):
 
 @login_required
 def add_bug(request, id):
-    add_bug = get_object_or_404(Bug, pk=id)
+    addbug = get_object_or_404(Bug, pk=id)
 
     if request.method == "POST":
-        form = New_posts(request.POST, instance=add_bug)
+        form = New_posts(request.POST, instance=addbug)
         if form.is_valid():
             bug = form.save(commit=False)
             bug.assigned = str(request.user)
@@ -105,7 +105,7 @@ def add_bug(request, id):
             return redirect("profile")
 
     context = {
-        "bugDetail": add_bug,
+        "bugDetail": addbug,
     }
 
     return render(request, "add_bug.html", context)

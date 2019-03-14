@@ -169,7 +169,7 @@ body{
 .card-body {
     line-height: 20px;
     padding: .8rem;
-    height: 187px;
+    min-height: 187px;
 }
 .right-corner {
     position: absolute;
@@ -190,7 +190,6 @@ body{
     width: 80%;
 }
 .top-results {
-    text-align: center;
     margin: auto;
 }
 .cart-table {
@@ -301,6 +300,9 @@ color: black;
         font-size: 10px;
         color: black !important;
     }
+    .table td .table th {
+    padding: .25rem;
+}
 }
 @media (min-width: 768px) {
     .bug-wrapper {

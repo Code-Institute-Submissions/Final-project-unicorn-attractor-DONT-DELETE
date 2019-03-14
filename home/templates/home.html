@@ -13,7 +13,7 @@
     </div>
     <p id="search-matched" class="mt-2 text-center"></p>
     <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
-        <li class="nav-item">
+        <li class="nav-item mr-2">
             <a class="nav-link active" id="Bug-tab" data-toggle="tab" href="#Bug" role="tab" aria-controls="Bug"
                aria-selected="true">Bugs</a>
         </li>
@@ -47,7 +47,7 @@
                     </li>
                 </ul>
             </div>
-            <!--RESULTS FOR SEARCHBAR DISPLAYED-->
+            <!--RESULTS FOR SEARCH BAR DISPLAYED-->
             <div class="row" id="list-results"></div>
             <i class="fa fa-spinner fa-spin fa-3x fa-fw justify-content-center"></i>
             <div class="tab-content" id="pills-tabContent">
@@ -55,7 +55,7 @@
                     <div class="row">
                         {% for bug in bugs %}
                         {% if bug.status == "Todo" %}
-                        <div class="col-md-4 display-wrapper">
+                        <div class="col-md-6 col-lg-4 display-wrapper">
                             <div style="border-left: 5px solid #dc3545"
                                  class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
                                 <div class="card-body d-flex flex-column align-items-start">
@@ -91,7 +91,7 @@
                     <div class="row">
                         {% for bug in bugs %}
                         {% if bug.status == "Doing" %}
-                        <div class="col-md-4 display-wrapper">
+                        <div class="col-md-6 col-lg-4 display-wrapper">
                             <div style="border-left: 5px solid #ffa500"
                                  class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
                                 <div class="card-body d-flex flex-column align-items-start">
@@ -122,7 +122,7 @@
                     <div class="row">
                         {% for bug in bugs %}
                         {% if bug.status == "Done" %}
-                        <div class=" col-md-4 display-wrapper">
+                        <div class="col-md-6 col-lg-4 display-wrapper">
                             <div style="border-left: 5px solid #28a745"
                                  class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
                                 <div class="card-body d-flex flex-column align-items-start">
@@ -153,20 +153,15 @@
         </div>
         <!--FEATURES-->
         <div class="tab-pane fade" id="Feature" role="tabpanel" aria-labelledby="Feature-tab">
-            <p class="lead text-muted tab-display">
-                All our amazing features are listed below. If you wish to purchase a feature simply add to your cart and
-                purchase through the website. Add any comment you have about the feature for others to see.
-            </p>
-            <hr>
-            <div class="row mb-2">
+            <div class="row mb-2 mt-3">
                 {% for feature in features|dictsortreversed:"price" %}
-                <div class="col-md-4 display-wrapper">
+                <div class="col-md-6 col-lg-4 display-wrapper">
                     <div class="card flex-md-row mb-4 shadow-sm h-md-250 card-display">
                         <div class="card-body d-flex flex-column align-items-start">
                             <h5 class="post-title">
-                                {{ feature.title }}
+                                {{ feature.title|truncatechars:28 }}
                             </h5>
-                            <div class="mb-1 text-muted post-date">
+                            <div class="mb-1 text-muted post-date post-price">
                                 £{{ feature.price }}
                             </div>
                             <p class="card-text mb-auto">

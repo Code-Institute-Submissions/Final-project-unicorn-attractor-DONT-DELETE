@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, UpdateImage, UpdateProfile
 from bug.models import Bug
@@ -62,3 +62,10 @@ def profile(request):
         }
 
     return render(request, "profile.html", context)
+
+
+def logout(request):
+    auth.logout(request)
+    messages.success(request,
+                     "You have been logged out!")
+    return redirect(reverse("index"))

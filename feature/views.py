@@ -23,6 +23,8 @@ def preview_feature(request, id):
             comments.feature = feature
             comments.author = request.user
             comments.save()
+            messages.success(request,
+                             "Comment has been successfully added!")
             return redirect(preview_feature, feature.id)
 
     else:
@@ -57,10 +59,11 @@ def create_feature(request):
             messages.success(request,
                              "Your Feature has been created!")
             return redirect(reverse("profile"))
-    else:
-        context = {
-            "form": form,
-        }
+
+    context = {
+        "form": form,
+    }
+
     return render(request, "create_feature.html", context)
 
 

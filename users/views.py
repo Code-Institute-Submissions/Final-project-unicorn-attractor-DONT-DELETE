@@ -6,6 +6,7 @@ from bug.models import Bug
 from feature.models import Feature
 from checkout.models import OrderLineItem
 
+
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -49,13 +50,11 @@ def profile(request):
         purchasedfeatures = OrderLineItem.objects.filter(purchased=request.user)
 
         Purchasedfeatures = []
+        bugStatus = []
 
         for feature in purchasedfeatures:
             brought_feature = get_object_or_404(Feature, title=feature.feature)
             Purchasedfeatures.append(brought_feature)
-        print(Purchasedfeatures)
-
-        bugStatus = []
 
         for bugs in BugsAssigned:
             if bugs.status != "Done":

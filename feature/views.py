@@ -37,6 +37,34 @@ def preview_feature(request, id):
     return render(request, "preview_feature.html", context)
 
 
+def brought_feature(request, id):
+    feature = get_object_or_404(Feature, pk=id)
+
+    all_comments = FeatureComment.objects.filter(
+        feature=feature)
+
+    if request.method == "POST":
+        comment = Comment_form(request.POST)
+
+        if comment.is_valid():
+            comments = comment.save(commit=False)
+            comments.feature = feature
+            comments.author = request.user
+            comments.save()
+            messages.success(request,
+                             "Comment has been successfully added!")
+            return redirect(brought_feature, feature.id)
+
+    else:
+        comment = Comment_form()
+        context = {
+            "feature": feature,
+            "comment": comment,
+            "comments": all_comments,
+        }
+    return render(request, "brought_feature.html", context)
+
+
 def upvote_feature(request, id):
     feature = get_object_or_404(Feature, pk=id)
     feature.upvotes += 1

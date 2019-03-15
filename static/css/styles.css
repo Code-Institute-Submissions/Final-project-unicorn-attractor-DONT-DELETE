@@ -13,6 +13,12 @@ body{
     max-height: 500px;
     margin: 0 !important;
 }
+.messages-display{
+    visibility: hidden;
+    -webkit-transition: opacity 2300ms, visibility 2300ms;
+    transition: opacity 2300ms, visibility 2300ms;
+    opacity: 0;
+}
 .marketing {
     text-align: center;
 }

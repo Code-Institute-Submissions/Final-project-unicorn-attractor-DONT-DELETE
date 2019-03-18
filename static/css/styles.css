@@ -15,8 +15,8 @@ body{
 }
 .messages-display{
     visibility: hidden;
-    -webkit-transition: opacity 2300ms, visibility 2300ms;
     transition: opacity 2300ms, visibility 2300ms;
+    -webkit-transition: opacity 2300ms, visibility 2300ms;
     opacity: 0;
 }
 .marketing {

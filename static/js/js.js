@@ -4,19 +4,19 @@ $(document).ready(function () {
     });
 }); 
 
-let messageBox = document.querySelector(".message-box");
-function boxmessage(){
-    if(messageBox){
-        let wrapper = document.querySelector(".message-wrapper")
-        setTimeout( () => {
-            messageBox.classList.add("messages-display")
-        }, 1000)
-        setTimeout( () => {
-            wrapper.style.display = "none";
-        },3300)
-    }
-}
-boxmessage()
+//let messageBox = document.querySelector(".message-box");
+//function boxmessage(){
+//    if(messageBox){
+//        let wrapper = document.querySelector(".message-wrapper")
+//        setTimeout( () => {
+//            messageBox.classList.add("messages-display")
+//        }, 1000)
+//        setTimeout( () => {
+//            wrapper.style.display = "none";
+//        },3300)
+//    }
+//}
+//boxmessage()
 
 // QUICK SEARCH ON HOMEPAGE
 

@@ -2,21 +2,18 @@ $(document).ready(function () {
     $("#profile-edit").click(function() {
         $(".profile-form").toggle();
     });
-}); 
+});
 
-//let messageBox = document.querySelector(".message-box");
-//function boxmessage(){
-//    if(messageBox){
-//        let wrapper = document.querySelector(".message-wrapper")
-//        setTimeout( () => {
-//            messageBox.classList.add("messages-display")
-//        }, 1000)
-//        setTimeout( () => {
-//            wrapper.style.display = "none";
-//        },3300)
-//    }
-//}
-//boxmessage()
+let messageBox = document.querySelector(".message-box");
+function boxmessage(){
+    if(messageBox){
+        let wrapper = document.querySelector(".message-wrapper")
+        setTimeout( () => {
+            messageBox.classList.add("messages-display")
+        }, 1000);
+    }
+}
+boxmessage()
 
 // QUICK SEARCH ON HOMEPAGE
 
@@ -30,7 +27,7 @@ if (searchBar){
     let displaySearchResult = document.getElementById("search-matched");
     let list = document.getElementById("list-results")
     let spinner = document.querySelector(".fa-spinner");
-    
+
     function searchInput(){
         let search = document.getElementById("searchValue").value.toUpperCase();
         count = 0;
@@ -52,12 +49,12 @@ if (searchBar){
                 pills.classList.add("disabled");
                 displaySearchResult.style.display = "";
                 displaySearchResult.innerText = `${count} matches found!`;
-            } 
+            }
         }
         items.forEach(function(item){
             list.appendChild(item)
         })
-        
+
         if(cardDisplay.length == count){
             count = 0;
             list.style.display = "none";
@@ -68,5 +65,5 @@ if (searchBar){
             }, 1000);
         }
     }
-} 
+}
 

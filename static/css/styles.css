@@ -6,12 +6,13 @@ body{
     width: 150px !important;
     height: 150px !important;
 }
-
-.main-display{
-    background-image: linear-gradient(135deg, #fefeff, #6db5d0);
-    box-shadow: inset 0 0 16px -4px #000;
-    max-height: 500px;
-    margin: 0 !important;
+.messages-main-wrapper *{
+    position:relative;
+}
+.message-box{
+    position: absolute;
+    width: 92%;
+    z-index: 10;
 }
 .messages-display{
     visibility: hidden;
@@ -19,6 +20,13 @@ body{
     -webkit-transition: opacity 2300ms, visibility 2300ms;
     opacity: 0;
 }
+.main-display{
+    background-image: linear-gradient(135deg, #fefeff, #6db5d0);
+    box-shadow: inset 0 0 16px -4px #000;
+    max-height: 500px;
+    margin: 0 !important;
+}
+
 .marketing {
     text-align: center;
 }
@@ -168,7 +176,7 @@ body{
 }
 .post-date {
     font-size: 14px;
-}   
+}
 .post-text {
     font-size: 14px;
 }
@@ -186,7 +194,7 @@ body{
     margin-top: -25px;
 }
 .status-tabs {
-    margin: 0px 20px 10px 20px;     
+    margin: 0px 20px 10px 20px;
 }
 .main-nav li a:hover {
     background-color: #81b7f9;
@@ -226,7 +234,7 @@ input[type=text]:disabled{
     background: #dddddd !important;
 }
 /* Styling for search button */
-  
+
 .searchbar{
     margin: auto;
     height: 60px;
@@ -270,9 +278,6 @@ color: black;
     margin-top: 15px;
 }
 
-
-
-
 /* MEDIA QUERIES */
 @media (max-width: 425px) {
     .bug-wrapper {
@@ -310,7 +315,10 @@ color: black;
         color: black !important;
     }
     .table td, .table th {
-    padding: .25rem;
+        padding: .25rem;
+    }
+    .med-margin{
+        margin-top: 3px;
     }
 }
 @media (min-width: 768px) {

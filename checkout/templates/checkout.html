@@ -8,8 +8,6 @@
 //<![CDATA[
     Stripe.publishableKey = '{{ publishable }}';
 //]]>
-
-
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock %}
@@ -29,7 +27,75 @@ Checkout
             <div class="address-form col col-12 col-md-6 .col-lg-6">
                 <fieldset class="paymentform">
                     <legend>Your Details</legend>
-                    {{ order_form|crispy }}
+                    <div id="div_id_full_name" class="form-group">
+                        <label for="id_full_name" class="col-form-label  requiredField">
+                            Full name
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="text" name="full_name" maxlength="50"
+                                   class="textinput textInput form-control" required id="id_full_name"/>
+                        </div>
+                    </div>
+                    <div id="div_id_phone_number" class="form-group">
+                        <label for="id_phone_number" class="col-form-label  requiredField">
+                            Phone number
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="text" name="phone_number" maxlength="40"
+                                   class="textinput textInput form-control" required id="id_phone_number"/>
+                        </div>
+                    </div>
+                    <div id="div_id_street_address1" class="form-group">
+                        <label for="id_street_address1" class="col-form-label  requiredField">
+                            Street address1
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="text" name="street_address1" maxlength="40"
+                                   class="textinput textInput form-control" required id="id_street_address1"/>
+                        </div>
+                    </div>
+                    <div id="div_id_street_address2" class="form-group">
+                        <label for="id_street_address2" class="col-form-label ">
+                            Street address2
+                        </label>
+                        <div class="">
+                            <input type="text" name="street_address2" maxlength="40"
+                                   class="textinput textInput form-control" id="id_street_address2"/>
+                        </div>
+                    </div>
+                    <div id="div_id_town_or_city" class="form-group">
+                        <label for="id_town_or_city" class="col-form-label  requiredField">
+                            Town or city
+                            <span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="text" name="town_or_city" maxlength="40"
+                                   class="textinput textInput form-control" required id="id_town_or_city"/>
+                        </div>
+                        <div id="div_id_postcode" class="form-group">
+                            <label for="id_postcode" class="col-form-label ">
+                                Postcode
+                            </label>
+                            <div class="">
+                                <input type="text" name="postcode" maxlength="20"
+                                       class="textinput textInput form-control"
+                                       id="id_postcode"/>
+                            </div>
+                        </div>
+                        <div id="div_id_country" class="form-group">
+                            <label for="id_country" class="col-form-label  requiredField">
+                                Country
+                                <span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                <input type="text" name="country" maxlength="50"
+                                       class="textinput textInput form-control"
+                                       required id="id_country"/></div>
+                        </div>
+                    </div>
                 </fieldset>
             </div>
             <div class="payment-form col-12 col-md-6 col-lg-6">

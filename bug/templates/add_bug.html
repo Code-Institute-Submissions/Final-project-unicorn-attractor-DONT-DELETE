@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Add Bug{% endblock %}
+{% block title %}Fix this Bug{% endblock %}
 {% block content %}
 <div class="container text-center add-bug">
     <form class="add-bug-form" method="POST">
-        <h2>Add {{ bugDetail.title }}</h2>
+        <h2>Fix {{ bugDetail.title }}</h2>
         <hr>
         <p class="lead text-muted">
-            Are you sure you want to add this bug? If you process this bug, it will be added to your profile where once
-            completed you can change the status?
+            Are you sure you want to fix this bug? If you process this bug, it will be added to your profile where once
+            completed you can change the status to done?
         </p>
         {% csrf_token %}
 

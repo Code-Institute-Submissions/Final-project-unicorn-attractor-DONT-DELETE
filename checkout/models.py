@@ -9,7 +9,7 @@ class Order(models.Model):
     street_address1 = models.CharField(
         max_length=40, blank=False)
     street_address2 = models.CharField(
-        max_length=40, blank=False)
+        max_length=40, blank=True)
     town_or_city = models.CharField(
         max_length=40, blank=False)
     country = models.CharField(

@@ -7,8 +7,7 @@ from .models import Bug
 
 def preview_bug(request, id):
     bug = get_object_or_404(Bug, pk=id)
-
-    if request.user != bug.author and bug.assigned:
+    if request.user != bug.author and request.user != bug.assigned:
         bug.views += 1
         bug.save()
 
@@ -37,10 +36,14 @@ def preview_bug(request, id):
 
 def upvote_bug(request, id):
     bug = get_object_or_404(Bug, pk=id)
-    bug.upvotes += 1
-    bug.save()
-    messages.success(request,
-                     "Bug has been Upvoted, Thank you!")
+    if request.user != bug.author:
+        bug.upvotes += 1
+        bug.save()
+        messages.success(request,
+                         "Bug has been Upvoted, Thank you!")
+    else:
+        messages.info(request,
+                      "Sorry you cant upvote your own bug!")
     return redirect("home")
 
 

@@ -10,7 +10,7 @@ function boxmessage(){
         let wrapper = document.querySelector(".message-wrapper")
         setTimeout( () => {
             messageBox.classList.add("messages-display")
-        }, 1000);
+        }, 1500);
     }
 }
 boxmessage()

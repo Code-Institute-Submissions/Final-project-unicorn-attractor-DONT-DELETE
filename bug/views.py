@@ -5,6 +5,7 @@ from .forms import New_posts, Comment_form, BugComment
 from .models import Bug
 
 
+@login_required
 def preview_bug(request, id):
     bug = get_object_or_404(Bug, pk=id)
     if request.user != bug.author and request.user != bug.assigned:
@@ -34,6 +35,7 @@ def preview_bug(request, id):
     return render(request, "preview_bug.html", context)
 
 
+@login_required
 def upvote_bug(request, id):
     bug = get_object_or_404(Bug, pk=id)
     if request.user != bug.author:

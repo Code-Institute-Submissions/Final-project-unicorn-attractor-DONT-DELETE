@@ -33,6 +33,7 @@ def home(request):
     return render(request, "home.html", context)
 
 
+@login_required
 def statistics(request):
     # Top Viewed bugs/features for table
 
@@ -48,6 +49,7 @@ def statistics(request):
     return render(request, "stats.html", results)
 
 
+@login_required
 def data_for_graphs(request):
     """
     collect all data for graphs to display,

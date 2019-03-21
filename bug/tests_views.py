@@ -48,8 +48,13 @@ class TestBugViews(TestCase):
                          'Doing')
 
     def test_upvote_bug(self):
-        self.c.get('/bug/upvote_bug/{0}'
-                   .format(self.bug.id), follow=True)
+        user = User.objects.create_user(username='test2',
+                                        password='test_password')
+        user.save()
+        c = Client()
+        c.login(username='test2', password='test_password')
+        c.post('/bug/upvote_bug/{0}'
+               .format(self.bug.id), follow=True)
         bug_upvoted = get_object_or_404(Bug, id=1)
         self.assertEqual(bug_upvoted.upvotes, 1)
 

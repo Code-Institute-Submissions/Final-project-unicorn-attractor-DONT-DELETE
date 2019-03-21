@@ -5,6 +5,7 @@ from .forms import New_posts, Comment_form, FeatureComment
 from django.contrib import messages
 
 
+@login_required
 def preview_feature(request, id):
     feature = get_object_or_404(Feature, pk=id)
 
@@ -36,7 +37,7 @@ def preview_feature(request, id):
         }
     return render(request, "preview_feature.html", context)
 
-
+@login_required
 def brought_feature(request, id):
     feature = get_object_or_404(Feature, pk=id)
 
@@ -64,7 +65,7 @@ def brought_feature(request, id):
         }
     return render(request, "brought_feature.html", context)
 
-
+@login_required
 def upvote_feature(request, id):
     feature = get_object_or_404(Feature, pk=id)
     feature.upvotes += 1

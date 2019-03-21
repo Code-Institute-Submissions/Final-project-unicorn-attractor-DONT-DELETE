@@ -30,4 +30,5 @@ urlpatterns = [
                   url(r'bug/', include(bug_urls)),
                   url(r'feature/', include(feature_urls)),
                   url(r'checkout/', include(checkout_urls)),
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+              ] + static(settings.STATIC_URL,
+                         document_root=settings.STATIC_ROOT)

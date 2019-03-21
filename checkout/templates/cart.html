@@ -12,12 +12,12 @@
                 <th scope="col">Product</th>
                 <th scope="col"></th>
                 <th scope="col">Price</th>
-                <th style="width: 10%;" scope="col">Total</th>
             </tr>
             </thead>
             <tbody>
             {% for item in cart_items %}
             <tr>
+
                 <th scope="row">
                     <a href="{% url 'delete_cart' item.feature.id %}">
                         <button type="button" class="close" aria-label="Close">
@@ -34,7 +34,6 @@
                 <td>
                     {{ item.feature.price }}
                 </td>
-                <td></td>
             </tr>
             {% endfor %}
             <tr>
@@ -45,8 +44,7 @@
                 </td>
                 {% else %}
                 <td></td>
-                <td></td>
-                <td></td>
+                <td>Total</td>
                 <td>
                     £{{ total }}
                     {% endif %}

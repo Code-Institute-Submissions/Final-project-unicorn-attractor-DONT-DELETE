@@ -77,7 +77,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'unicornApp.wsgi.application'
-
+# TEST DEVELOPMENT SERVER
 # DATABASE FOR DEVELOPMENT
 # DATABASES = {
 #     'default': {

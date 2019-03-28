@@ -17,13 +17,12 @@
             <tbody>
             {% for item in cart_items %}
             <tr>
-
                 <th scope="row">
                     <a href="{% url 'delete_cart' item.feature.id %}">
                         <button type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">
-                                        &times;
-                                    </span>
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
                         </button>
                     </a>
                 </th>

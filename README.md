@@ -9,7 +9,7 @@ Developers website
 
 [View Developers Webpage](https://unicornapp-milestone-project.herokuapp.com/)
 
-Developers was created so a company was able to post bugs or new features that have been created by users or are experiencing problems. Bugs are listed by there status, which are Todo, Doing and Done. Bugs and Features can easily be added by simply filling out the forms through there profile page. Users that feel they can help fix the bugs can assign the bug to themselves and once completed can change the status to Done. Bugs can be upvoted so they are listed first before other other bugs. Users can comment on bugs and features about there thoughts and give free advise.  Features that have been created can be purchased through the online payment system which is supported by stripe.  
+Developers was created so people where able to post bugs that they where experiencing problems with for others to help diagnose. Also users are able to create new features about the services that they can provide which can be purchased through the online payment system which is supported by stripe. Bugs are listed by there status, which are Todo, Doing and Done. Bugs and Features can easily be added by simply filling out the forms through there profile page. Users that feel they can help fix the bugs can assign the bug to themselves and once completed can change the status to Done. Bugs can be upvoted so they are listed first before other bugs. Users can comment on bugs and features about there thoughts and give free advise.    
  
 ## Website Functionality
 
@@ -50,6 +50,9 @@ How does Developers work :
 
 - [Python / Django](https://www.python.org/)
     -  **Python** and **Django**  where chosen languages used to write the Developers webpage. Python and Django are powerful programming language with many builtin functions and extensions. 
+    
+- [Flake8](http://flake8.pycqa.org/en/latest/)
+    -  **Flake8** A python code linter tool.  The tool will check your code syntax and provide instructions on anything that needs to be make cleaner and remove syntax that isn't being used.
 
 - [Visual Studio Code](https://code.visualstudio.com/)
     - **Visual Studio Code** was the chosen text editor. Very easy to use with create built in debugging and extensions.
